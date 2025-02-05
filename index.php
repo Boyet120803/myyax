@@ -388,7 +388,7 @@
             <div class="col-md-12">
                 <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
             </div>
-            <button type="submit">Sendd Message</button>
+            <button type="submit">Send Message</button>
         </div>
     </form>
 
