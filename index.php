@@ -327,68 +327,10 @@
           </div><!-- End Info Item -->
 
         </div>
-<style>
-  .form{
-    margin-top: 50px;
-    border:0px solid; 
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
-    padding: 40px;
-  }
-  button{
-    background-color: #ffc952;
-    padding: 10px 15px;
-    border-radius: 15px;
-    border:none;
-  }
-</style>
-<?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "mypersonaldb";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
-if ($conn->connect_error) {
-    die("Database Connection Failed: " . $conn->connect_error);
-}
-function sanitizeInput($data) {
-    return htmlspecialchars(stripslashes(trim($data)));
-}
 
-$messageResponse = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = sanitizeInput($_POST['name'] ?? '');
-    $email = sanitizeInput($_POST['email'] ?? '');
-    $subject = sanitizeInput($_POST['subject'] ?? '');
-    $message = sanitizeInput($_POST['message'] ?? '');
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $messageResponse = "Invalid email format!";
-    } else {
-        $query = "INSERT INTO users (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$message')";
-        
-        if ($conn->query($query) === TRUE) {
-            $messageResponse = "Message sent successfully!";
-        } else {
-            $messageResponse = "Error: " . $conn->error;
-        }
-    }
-}
-?>
- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                let alertBox = document.getElementById("alertMessage");
-                if (alertBox) {
-                    alertBox.style.display = "none";
-                }
-            }, 5000); 
-        });
-    </script>
    <form action="" method="post" class="form" data-aos="fade-up" data-aos-delay="300">
-        <?php if (!empty($messageResponse)) : ?>
-            <div id="alertMessage" class="alert alert-info text-center "> <?php echo $messageResponse; ?> </div>
-        <?php endif; ?>
+       
         <div class="row gy-4">
             <div class="col-md-6">
                 <input type="text" name="name" class="form-control" placeholder="Your Name" required>
