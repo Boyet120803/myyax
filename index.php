@@ -246,9 +246,9 @@
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <div class="portfolio-content h-100">
-                <img src="assets/img/one" class="img-fluid" alt="">
+                <img src="assets/img/one.png" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <a href="assets/img/one" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="assets/img/one.png" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="https://stdprofile.webactivities.online/index.php?/" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -256,9 +256,9 @@
 
             <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
               <div class="portfolio-content h-100">
-                <img src="assets/img/votingimg" class="img-fluid" alt="">
+                <img src="assets/img/votingimg.png" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <a href="assets/img/votingimg" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="assets/img/votingimg.png" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="https://voting.webactivities.online/" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
