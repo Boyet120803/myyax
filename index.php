@@ -236,7 +236,7 @@
   <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
   <div class="service-item position-relative">
     <div class="icon"><i class="bi bi-code-slash icon"></i></div>
-    <h4><a href="" class="stretched-link">Web Development</a></h4>
+    <h4><a href="#" class="stretched-link">Web Development</a></h4>
     <p>I create websites that are fast, responsive, and easy to use.</p>
   </div>
 </div><!-- End Service Item -->
@@ -244,7 +244,7 @@
 <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
   <div class="service-item position-relative">
     <div class="icon"><i class="bi bi-camera-reels icon"></i></div>
-    <h4><a href="" class="stretched-link">Video Editing</a></h4>
+    <h4><a href="#" class="stretched-link">Video Editing</a></h4>
     <p>I edit videos to make them smooth, engaging, and professional-looking.</p>
   </div>
 </div><!-- End Service Item -->
@@ -252,7 +252,7 @@
 <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
   <div class="service-item position-relative">
     <div class="icon"><i class="bi bi-brush icon"></i></div>
-    <h4><a href="" class="stretched-link">Graphic Design</a></h4>
+    <h4><a href="#" class="stretched-link">Graphic Design</a></h4>
     <p>I design logos, posters, and social media graphics that stand out.</p>
   </div>
 </div><!-- End Service Item -->
@@ -261,7 +261,7 @@
 <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="500">
   <div class="service-item position-relative">
     <div class="icon"><i class="bi bi-image icon"></i></div>
-    <h4><a href="" class="stretched-link">Photo Editing</a></h4>
+    <h4><a href="#" class="stretched-link">Photo Editing</a></h4>
     <p>I enhance and retouch photos to make them more vibrant and professional.</p>
   </div>
 </div><!-- End Service Item -->
