@@ -41,10 +41,10 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">YAX</h1>
+        <img src="assets/img/b.png" alt="">   
+        <h1 class="sitename">DEDAL</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -52,6 +52,7 @@
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#resume">Resume</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -77,7 +78,7 @@
 
       <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
         <h2>Boyet A. Dedal</h2>
-        <p>I'M A JUNIOR DEVELOPER IN HINDANG LEYTE</p>
+        <p>I'm a Junior Developer from Hindang, Leyte, passionate about building creative and functional digital solutions.</p>
         <a href="#about" class="btn-scroll" title="Scroll Down"><i class="bi bi-chevron-down"></i></a>
       </div>
 
@@ -218,7 +219,58 @@
 
     </section><!-- /Resume Section -->
 
-    <!-- Services Section -->
+      <!-- Services Section -->
+      <section id="services" class="services section">
+
+<!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+  <span class="description-title">My Services</span>
+  <h2>My Services</h2>
+  <p>I offer web development, video editing, graphic design, and photo editing to create high-quality digital solutions.</p>
+</div><!-- End Section Title -->
+
+<div class="container">
+
+  <div class="row gy-4">
+
+  <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+  <div class="service-item position-relative">
+    <div class="icon"><i class="bi bi-code-slash icon"></i></div>
+    <h4><a href="" class="stretched-link">Web Development</a></h4>
+    <p>I create websites that are fast, responsive, and easy to use.</p>
+  </div>
+</div><!-- End Service Item -->
+
+<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+  <div class="service-item position-relative">
+    <div class="icon"><i class="bi bi-camera-reels icon"></i></div>
+    <h4><a href="" class="stretched-link">Video Editing</a></h4>
+    <p>I edit videos to make them smooth, engaging, and professional-looking.</p>
+  </div>
+</div><!-- End Service Item -->
+
+<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+  <div class="service-item position-relative">
+    <div class="icon"><i class="bi bi-brush icon"></i></div>
+    <h4><a href="" class="stretched-link">Graphic Design</a></h4>
+    <p>I design logos, posters, and social media graphics that stand out.</p>
+  </div>
+</div><!-- End Service Item -->
+
+
+<div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="500">
+  <div class="service-item position-relative">
+    <div class="icon"><i class="bi bi-image icon"></i></div>
+    <h4><a href="" class="stretched-link">Photo Editing</a></h4>
+    <p>I enhance and retouch photos to make them more vibrant and professional.</p>
+  </div>
+</div><!-- End Service Item -->
+
+  </div>
+
+</div>
+
+</section><!-- /Services Section -->
   
 
     <!-- Testimonials Section -->
