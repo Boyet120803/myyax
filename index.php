@@ -68,15 +68,59 @@
 
     </div>
   </header>
+<style>
+@media (max-width: 480px) {
+    .image-container {
+        height: 10px; /* Mas mataas para makita ang subject */
+    }
+    
+    .responsive-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 10% center; /* Adjust para ma-center ang subject */
+    }
+    #container-name{
+      margin-top:-110px;
+    }
+    #container-name p{
+      margin-top:40px;
+    }
+}
 
+@media (max-width: 542px) {
+    .image-container {
+        height: 10px; /* Mas mataas para makita ang subject */
+    }
+    
+    .responsive-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 10% center; /* Adjust para ma-center ang subject */
+    }
+    #container-name{
+      margin-top:-110px;
+    }
+    #container-name p{
+      margin-top:40px;
+    }
+}
+
+
+</style>
   <main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/picboyet.JPG" alt="" data-aos="fade-in">
+    <div class="image-container">
+      <img src="assets/img/picboyet.JPG" alt="Profile Image" class="responsive-img" data-aos="fade-in">
+    </div>
 
-      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+
+
+      <div class="container text-center" id="container-name" data-aos="fade-up" data-aos-delay="100">
         <h2>Boyet A. Dedal</h2>
         <p>I'm a Junior Developer from Hindang, Leyte, passionate about building creative and functional digital solutions.</p>
         <a href="#about" class="btn-scroll" title="Scroll Down"><i class="bi bi-chevron-down"></i></a>
