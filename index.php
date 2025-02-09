@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Boyet's Personal Website</title>
+  <title>Boyet's Personal Website</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/b.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -74,7 +74,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/programmer.jpg" alt="" data-aos="fade-in">
+      <img src="assets/img/picboyet.jpg" alt="" data-aos="fade-in">
 
       <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
         <h2>Boyet A. Dedal</h2>
