@@ -74,7 +74,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="assets/img/picboyet.jpg" alt="" data-aos="fade-in">
+      <img src="assets/img/picboyet.JPG" alt="" data-aos="fade-in">
 
       <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
         <h2>Boyet A. Dedal</h2>
