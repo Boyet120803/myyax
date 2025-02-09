@@ -81,7 +81,7 @@
         object-position: 10% center; /* Adjust para ma-center ang subject */
     }
     #container-name{
-      margin-top:-110px;
+      margin-top:-150px;
     }
     #container-name p{
       margin-top:40px;
@@ -100,7 +100,7 @@
         object-position: 10% center; /* Adjust para ma-center ang subject */
     }
     #container-name{
-      margin-top:-110px;
+      margin-top:-150px;
     }
     #container-name p{
       margin-top:40px;
