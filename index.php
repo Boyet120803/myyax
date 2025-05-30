@@ -1,3 +1,22 @@
+<?php
+session_start(); // Start session at the top
+
+require_once 'ContactForm.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $form = new ContactForm($_POST);
+
+    if ($form->save()) {
+        $_SESSION['success'] = "Message saved successfully!";
+    } else {
+        $_SESSION['error'] = "Failed to save message.";
+    }
+
+    header("Location: index.php#contact"); 
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -417,24 +436,53 @@
         </div>
 
 
-   <form action="" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-       
-        <div class="row gy-4">
-            <div class="col-md-6">
-                <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+
+
+
+      <!-- 4. Contact Form HTML -->
+      <form action="index.php#contact" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
+       <?php if (isset($_SESSION['success'])): ?>
+            <div id="flash-message" style="text-align:center; color: black;">
+                <?php echo $_SESSION['success']; ?>
             </div>
-            <div class="col-md-6">
-                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['error'])): ?>
+            <div id="flash-message" style="text-align:center; color: red;">
+                <?php echo $_SESSION['error']; ?>
             </div>
-            <div class="col-md-12">
-                <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-            </div>
-            <div class="col-md-12">
-                <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-        </div>
-    </form>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+
+        <script>
+         
+          setTimeout(function() {
+            const flash = document.getElementById('flash-message');
+            if (flash) {
+              flash.remove();
+            }
+          }, 4000);
+        </script>
+          <div class="row gy-4">
+              <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6">
+                  <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+              </div>
+              <div class="col-md-12">
+                  <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+              </div>
+              <div class="col-md-12">
+                  <textarea name="message" class="form-control" rows="6" placeholder="Message" required></textarea>
+              </div>
+              <div class="col-md-12 text-center">
+                  <button type="submit">Send Message</button>
+              </div>
+          </div>
+      </form>
+
 
       </div>
 
