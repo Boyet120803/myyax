@@ -1,6 +1,5 @@
 <?php
-session_start(); // Start session at the top
-
+session_start();
 require_once 'ContactForm.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -441,8 +440,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <!-- 4. Contact Form HTML -->
       <form action="index.php#contact" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="300">
-       <?php if (isset($_SESSION['success'])): ?>
-            <div id="flash-message" style="text-align:center; color: black;">
+        <?php if (isset($_SESSION['success'])): ?>
+        <div id="flash-message" style="text-align:center; color: black;">
                 <?php echo $_SESSION['success']; ?>
             </div>
             <?php unset($_SESSION['success']); ?>
@@ -456,14 +455,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <script>
-         
           setTimeout(function() {
             const flash = document.getElementById('flash-message');
             if (flash) {
               flash.remove();
             }
-          }, 4000);
+          }, 5000);
         </script>
+
           <div class="row gy-4">
               <div class="col-md-6">
                   <input type="text" name="name" class="form-control" placeholder="Your Name" required>
