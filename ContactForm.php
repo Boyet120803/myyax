@@ -14,25 +14,18 @@ class ContactForm
         $database = new Database();
         $this->db = $database->conn;
 
-        $this->name = htmlspecialchars($post['name']);
-        $this->email = htmlspecialchars($post['email']);
-        $this->subject = htmlspecialchars($post['subject']);
-        $this->message = htmlspecialchars($post['message']);
+        $this->name = mysql_real_escape_string($post['name']);
+        $this->email = mysql_real_escape_string($post['email']);
+        $this->subject = mysql_real_escape_string($post['subject']);
+        $this->message = mysql_real_escape_string($post['message']);
     }
 
     public function save()
     {
         $sql = "INSERT INTO messages (name, email, subject, message)
-                VALUES (:name, :email, :subject, :message)";
+                VALUES ('$this->name', '$this->email', '$this->subject', '$this->message')";
 
-        $stmt = $this->db->prepare($sql);
-
-        return $stmt->execute([
-            ':name' => $this->name,
-            ':email' => $this->email,
-            ':subject' => $this->subject,
-            ':message' => $this->message
-        ]);
+        return mysql_query($sql, $this->db);
     }
 }
 ?>

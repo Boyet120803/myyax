@@ -9,16 +9,11 @@ class Database
 
     public function __construct()
     {
-        try {
-            $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbname}",
-                $this->username,
-                $this->password
-            );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("DB Connection Failed: " . $e->getMessage());
-        }
+        $this->conn = mysql_connect($this->host, $this->username, $this->password)
+            or die("Cannot connect to database");
+
+        mysql_select_db($this->dbname, $this->conn)
+            or die("Cannot select database");
     }
 }
 ?>
