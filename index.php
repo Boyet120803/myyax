@@ -907,7 +907,7 @@
         class="text-4xl font-bold text-gradient mb-6"
         style="font-family: 'Orbitron', monospace;"
       >
-        NEURAL TIMELINE
+        TIMELINE
       </h2>
       <p class="text-xl text-gray-300">
         A professional journey through web development, project execution, and data-driven innovation.
