@@ -636,7 +636,7 @@
           </p>
 
           <ul class="text-gray-400 space-y-1">
-            <li>• Age: 21</li>
+            <li>• Age: 22</li>
             <li>• Hindang, Leyte, Philippines</li>
             <li>• 0991 652 9335</li>
             <li>• dedalboyet16@gmail.com</li>
