@@ -700,10 +700,9 @@
 
         <div class="border-l-2 border-primary pl-4">
           <ul class="text-gray-300 space-y-2">
-            <li>• HTML, CSS,PHP and JavaScript</li>
+            <li>• HTML, CSS,PHP,Laravel,Filament and JavaScript</li>
             <li>• Responsive Web Design</li>
             <li>• Time Management</li>
-            <li>• Hardworking and Self-Driven</li>
           </ul>
         </div>
       </div>
