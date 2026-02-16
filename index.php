@@ -50,9 +50,65 @@
 
             body {
                 font-family: 'Exo 2', sans-serif;
-                background: #0a0a0a;
+              background: #311E4C;
                 color: #ffffff;
                 overflow-x: hidden;
+              transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+            body.theme-light {
+              background: #E1EBED;
+              color: #0f172a;
+            }
+
+            body.theme-light .hero-bg {
+              background: radial-gradient(circle at 20% 30%, rgba(14, 165, 233, 0.18) 0%, transparent 55%),
+                    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 60%),
+                    radial-gradient(circle at 40% 80%, rgba(244, 114, 182, 0.12) 0%, transparent 55%),
+                    linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #dbeafe 100%);
+            }
+
+            body.theme-light .glass-morphism {
+              background: rgba(255, 255, 255, 0.75);
+              border-color: rgba(15, 23, 42, 0.1);
+            }
+
+            body.theme-light .text-white {
+              color: #0f172a !important;
+            }
+
+            body.theme-light .text-gray-300,
+            body.theme-light .text-gray-400 {
+              color: #475569 !important;
+            }
+
+            body.theme-light .text-gray-200 {
+              color: #334155 !important;
+            }
+
+            body.theme-light .stats-number {
+              color: #0f172a !important;
+            }
+
+            body.theme-light .nav-item {
+              color: #0f172a;
+            }
+
+            body.theme-light .nav-item:hover {
+              color: #0ea5e9;
+            }
+
+            .theme-toggle {
+              color: #ffffff;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              background: rgba(255, 255, 255, 0.06);
+              transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            }
+
+            body.theme-light .theme-toggle {
+              color: #0f172a;
+              border-color: rgba(15, 23, 42, 0.15);
+              background: rgba(255, 255, 255, 0.9);
             }
 
             .glass-morphism {
@@ -165,6 +221,26 @@
                 transform: translateY(0);
             }
 
+            .float-in-left,
+            .float-in-right {
+              opacity: 0;
+              transition: opacity 0.9s ease, transform 0.9s ease;
+            }
+
+            .float-in-left {
+              transform: translateX(-32px);
+            }
+
+            .float-in-right {
+              transform: translateX(32px);
+            }
+
+            .float-in-left.visible,
+            .float-in-right.visible {
+              opacity: 1;
+              transform: translateX(0);
+            }
+
             .nav-item {
                 position: relative;
                 overflow: hidden;
@@ -238,6 +314,38 @@
                 z-index: 9999;
                 opacity: 0;
                 transition: opacity 0.3s ease;
+            }
+
+            .scroll-top {
+              position: fixed;
+              right: 24px;
+              bottom: 24px;
+              width: 44px;
+              height: 44px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 9999px;
+              background: rgba(255, 255, 255, 0.08);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              color: #ffffff;
+              opacity: 0;
+              visibility: hidden;
+              transform: translateY(8px);
+              transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+              z-index: 60;
+            }
+
+            .scroll-top.active {
+              opacity: 1;
+              visibility: visible;
+              transform: translateY(0);
+            }
+
+            body.theme-light .scroll-top {
+              background: rgba(255, 255, 255, 0.9);
+              border-color: rgba(15, 23, 42, 0.15);
+              color: #0f172a;
             }
 
             @media (max-width: 768px) {
@@ -437,21 +545,32 @@
                 >
                     BOYET.DEDAL
                 </div>
-
-                <!-- DESKTOP MENU -->
-                <div class="hidden md:flex space-x-8">
+                <div class="flex items-center space-x-4">
+                  <!-- DESKTOP MENU -->
+                  <div class="hidden md:flex space-x-8">
                     <a href="#home" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">HOME</a>
                     <a href="#about" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">ABOUT</a>
                     <a href="#resume" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">RESUME</a>
                     <a href="#projects" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">PROJECTS</a>
                     <a href="#experience" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">EXPERIENCE</a>
                     <a href="#contact" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">CONTACT</a>
-                </div>
+                  </div>
 
-                <!-- HAMBURGER BUTTON -->
-                <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center z-50 relative">
+                  <button
+                    id="theme-toggle"
+                    class="theme-toggle w-10 h-10 rounded-full flex items-center justify-center"
+                    type="button"
+                    aria-label="Toggle theme"
+                    aria-pressed="false"
+                  >
+                    <i class="ri-sun-line text-xl"></i>
+                  </button>
+
+                  <!-- HAMBURGER BUTTON -->
+                  <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center z-50 relative">
                     <i class="ri-menu-line text-2xl"></i>
-                </button>
+                  </button>
+                </div>
                 </div>
 
                 <!-- MOBILE MENU -->
@@ -513,54 +632,136 @@
         ></div>
 
         <div class="w-full max-w-7xl mx-auto px-6 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8">
-                <div class="space-y-4">
-                <div
-                    class="text-sm font-medium text-primary tracking-wider"
-                    style="font-family: 'Orbitron', monospace;"
-                >
-                    JUNIOR DEVELOPER
-                </div>
-                <h1
-                    class="text-5xl lg:text-7xl font-black text-gradient leading-tight"
-                    style="font-family: 'Orbitron', monospace;"
-                >
-                    B. DEDAL
-                </h1>
-                <p class="text-xl text-gray-300 leading-relaxed max-w-lg">
-                    I'm a Junior Developer from Hindang, Leyte, passionate about building creative and functional digital solutions.
-                </p>
-                </div>
-                <div class="flex flex-wrap gap-4">
-                  <a
-                  href="#projects"
-                    class="!rounded-button whitespace-nowrap px-8 py-4 glass-morphism neon-glow magnetic-hover text-white font-semibold"
-                  >
-                    Explore Portfolio
-                  </a>
-                </div>
+          <div class="grid lg:grid-cols-2 gap-12 items-center justify-items-center lg:justify-items-start">
+          <div class="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
+            <div class="space-y-4 w-full">
+            <div
+              class="text-sm font-medium text-primary tracking-wider mt-12 sm:mt-10 lg:mt-0"
+              style="font-family: 'Orbitron', monospace;"
+            >
+              WEB DEVELOPER
             </div>
-              <div class="relative">
-                  <div class="w-80 h-80 mx-auto relative">
+            <h1
+              class="text-5xl lg:text-7xl font-black text-gradient leading-tight"
+              style="font-family: 'Orbitron', monospace;"
+            >
+              B. DEDAL
+            </h1>
+            <p class="text-xl text-gray-300 leading-relaxed max-w-lg mx-auto lg:mx-0">
+              I'm a Junior Developer from Hindang, Leyte, passionate about building creative and functional digital solutions.
+            </p>
+            </div>
+            <div class="flex flex-wrap gap-4 justify-center lg:justify-start w-full">
+              <a
+              href="#projects"
+              class="!rounded-button whitespace-nowrap px-8 py-4 glass-morphism neon-glow magnetic-hover text-white font-semibold mx-auto lg:mx-0"
+              >
+              Explore Portfolio
+              </a>
+            </div>
+          </div>
+            <div class="relative flex justify-center w-full pb-16 lg:pb-0">
+              <div class="w-[22rem] h-[30rem] sm:w-[26rem] sm:h-[34rem] lg:w-[29rem] lg:h-[29rem] mx-auto relative -mt-4 sm:-mt-2 lg:-mt-5 -mb-16 lg:mb-0">
                       <!-- Digital Avatar -->
-                      <div class="absolute inset-0 rounded-full glass-morphism neon-glow flex items-center justify-center">                     
-                          <div class="w-75 h-85 rounded-full overflow-hidden flex items-center justify-center 
-                          shadow-[0_0_30px_10px_rgba(186,85,255,0.7)]">
-                              <img src="assets/img/boy.png" alt="User" class="w-full h-full object-cover" />
+                      <div class="absolute inset-0 flex items-center justify-center">                     
+                          <div class="w-full h-full overflow-hidden flex items-center justify-center">
+                              <img id="avatar-img" src="assets/img/boyetyet.png" alt="User" class="w-full h-full object-contain" />
                           </div>
-                      </div>
-                      <!-- Orbiting Elements -->
-                      <div class="absolute inset-0 animate-spin" style="animation-duration: 20s;">
-                          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2 w-4 h-4 bg-primary rounded-full opacity-60"></div>
-                          <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2 w-3 h-3 bg-secondary rounded-full opacity-80"></div>
-                          <div class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-2 w-2 h-2 bg-purple-400 rounded-full opacity-70"></div>
-                          <div class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-2 w-3 h-3 bg-cyan-400 rounded-full opacity-60"></div>
                       </div>
                   </div>
               </div>
             </div>
         </div>
+        </section>
+
+        <!-- Stats + Tech Strip -->
+        <section class="relative z-20 -mt-24">
+          <div class="bg-white/10 backdrop-blur-md border-y border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col lg:flex-row items-center justify-between gap-6">
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/html.png" alt="HTML" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">HTML</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/css.png" alt="CSS" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">CSS</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/javascript.jpg" alt="JavaScript" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">JavaScript</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/wordpress.png" alt="WordPress" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">WordPress</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/bootstrap.jpg" alt="Bootstrap" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Bootstrap</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/vscode.png" alt="VS Code" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">VS Code</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/filament.png" alt="Filament" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Filament</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/laravel.png" alt="Laravel" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Laravel</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/php.png" alt="PHP" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">PHP</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/tailwind.png" alt="Tailwind CSS" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Tailwind</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/mysql.png" alt="MySQL" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">MySQL</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/cpanel.png" alt="cPanel" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">cPanel</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/github.png" alt="GitHub" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">GitHub</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/git.png" alt="Git" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Git</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/chrome.png" alt="Chrome" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Chrome</span>
+                  </div>
+                  <div class="tech-icon-wrapper group relative cursor-pointer">
+                    <img src="assets/img/chatgpt.jpg" alt="ChatGPT" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
+                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">ChatGPT</span>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-8">
+                  <div class="flex items-center gap-4">
+                    <span class="text-4xl font-extrabold text-white stats-number">2+</span>
+                    <div class="leading-tight text-gray-200">
+                      <div class="text-sm uppercase tracking-widest">Years of</div>
+                      <div class="text-base font-semibold">Experience</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <span class="text-4xl font-extrabold text-white stats-number">4+</span>
+                    <div class="leading-tight text-gray-200">
+                      <div class="text-sm uppercase tracking-widest">Projects</div>
+                      <div class="text-base font-semibold">Completed</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
         </section>
 
         <!-- About Section -->
@@ -703,7 +904,6 @@
             <li>• HTML, CSS,PHP and JavaScript</li>
             <li>• Responsive Web Design</li>
             <li>• Time Management</li>
-            <li>• Hardworking and Self-Driven</li>
           </ul>
         </div>
       </div>
@@ -788,7 +988,7 @@
               <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
                 <i class="ri-id-card-line text-4xl text-secondary"></i>
               </div>
-              <h3 class="text-xl font-bold mb-2 text-white">MLG ID Maker</h3>
+              <h3 class="text-xl font-bold mb-2 text-white">MLGCL ID Maker</h3>
               <p class="text-white text-sm flex-1">
                 A comprehensive ID creation system for MLG, featuring user-friendly interface, image upload, and PDF export.
               </p>
@@ -857,7 +1057,84 @@
         </div>
       </div>
 
-      <!-- Project Card 4 -->
+              <!-- Project Card 4 -->
+        <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
+          <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
+            <!-- Front -->
+            <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-black/10 pointer-events-none"
+                style="background-image: url('assets/img/library.png');">
+              <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col flex-1">
+                <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
+                  <i class="ri-task-line text-4xl text-purple-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">MLGCL Library</h3>
+                <p class="text-white text-sm flex-1">
+                    A web-based library management system for managing books, borrowers, and borrowing transactions, with user roles and activity tracking.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">Library</span>
+                  <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">Books</span>
+                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Borrowing</span>
+                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Reservations</span>
+                </div>
+              </div>
+            </div>
+            <!-- Back -->
+            <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
+              <h3 class="text-xl font-bold mb-4">Technical Details</h3>
+              <ul class="text-sm text-gray-300 space-y-2">
+                <li>• Role-based access (Admin, Librarian, Student)</li>
+                <li>• Book management (CRUD)</li>
+                <li>• Borrowing and returning transactions</li>
+                <li>• Borrowing history and activity logs</li>
+              </ul>
+              <a href="https://library.creativedevlabs.com/admin" target="_blank" 
+                class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
+                View Project
+              </a>
+            </div>
+          </div>
+        </div>
+
+              <!-- Project Card 5 -->
+        <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
+          <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
+            <!-- Front -->
+            <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-black/10 pointer-events-none"
+                style="background-image: url('assets/img/leopards.png');">
+              <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
+              <div class="relative z-10 flex flex-col flex-1">
+                <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
+                  <i class="ri-task-line text-4xl text-purple-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">LEOPARDS MOTORBOAT SERVICES</h3>
+                <div class="flex flex-wrap gap-2 mt-4">
+                  <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">Motorboat</span>
+                  <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">Bookings</span>
+                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Customers</span>
+                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Reservations</span>
+                </div>
+              </div>
+            </div>
+            <!-- Back -->
+            <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
+              <h3 class="text-xl font-bold mb-4">Technical Details</h3>
+              <ul class="text-sm text-gray-300 space-y-2">
+                  <li>• Role-based access (Admin, Staff, Customer)</li>
+                  <li>• Motorboat booking management (CRUD)</li>
+                  <li>• Customer and reservation records</li>
+                  <li>• Service schedules and trip management</li>
+              </ul>
+              <a href="https://lmbs-staging.creativedevlabs.com/" target="_blank" 
+                class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
+                View Project
+              </a>
+            </div>
+          </div>
+        </div>
+
+      <!-- Project Card 6 -->
       <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
         <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
           <!-- Front -->
@@ -1105,6 +1382,10 @@
         </div>
         </footer>
 
+        <a href="#home" id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+          <i class="ri-arrow-up-line text-xl"></i>
+        </a>
+
         <script id="loading-animation">
         document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
@@ -1118,6 +1399,10 @@
 
         <script id="scroll-animations">
         document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("section").forEach((section, index) => {
+            section.classList.add(index % 2 === 0 ? "float-in-left" : "float-in-right");
+            });
+
             const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px",
@@ -1131,7 +1416,7 @@
             });
             }, observerOptions);
 
-            document.querySelectorAll(".fade-in-up").forEach((el) => {
+            document.querySelectorAll(".fade-in-up, .float-in-left, .float-in-right").forEach((el) => {
             observer.observe(el);
             });
         });
@@ -1198,6 +1483,28 @@
             });
         });
         </script>
+        <script id="scroll-top">
+        document.addEventListener("DOMContentLoaded", function () {
+          const scrollTop = document.getElementById("scroll-top");
+          if (!scrollTop) return;
+
+          const toggleScrollTop = () => {
+          if (window.scrollY > 300) {
+            scrollTop.classList.add("active");
+          } else {
+            scrollTop.classList.remove("active");
+          }
+          };
+
+          scrollTop.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+
+          window.addEventListener("scroll", toggleScrollTop);
+          toggleScrollTop();
+        });
+        </script>
     <script>
         const menuBtn = document.getElementById("menu-btn");
         const mobileMenu = document.getElementById("mobile-menu");
@@ -1224,6 +1531,38 @@
             isOpen = false;
             });
         });
+        </script>
+<script>
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = themeToggle ? themeToggle.querySelector("i") : null;
+        const avatarImg = document.getElementById("avatar-img");
+
+        const setTheme = (theme) => {
+          const isLight = theme === "light";
+          document.body.classList.toggle("theme-light", isLight);
+          if (themeToggle) {
+            themeToggle.setAttribute("aria-pressed", String(isLight));
+          }
+          if (themeIcon) {
+            themeIcon.className = isLight ? "ri-moon-line text-xl" : "ri-sun-line text-xl";
+          }
+          if (avatarImg) {
+            avatarImg.src = isLight ? "assets/img/boyetyet.png" : "assets/img/boyetsando.png";
+          }
+        };
+
+        const storedTheme = localStorage.getItem("theme");
+        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        const initialTheme = storedTheme || (prefersLight ? "light" : "dark");
+        setTheme(initialTheme);
+
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const nextTheme = document.body.classList.contains("theme-light") ? "dark" : "light";
+            setTheme(nextTheme);
+            localStorage.setItem("theme", nextTheme);
+          });
+        }
         </script>
 <script>
 document.querySelectorAll('.project-card').forEach(card => {
