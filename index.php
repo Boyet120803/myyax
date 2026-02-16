@@ -837,7 +837,7 @@
           </p>
 
           <ul class="text-gray-400 space-y-1">
-            <li>• Age: 21</li>
+            <li>• Age: 22</li>
             <li>• Hindang, Leyte, Philippines</li>
             <li>• 0991 652 9335</li>
             <li>• dedalboyet16@gmail.com</li>
@@ -901,7 +901,7 @@
 
         <div class="border-l-2 border-primary pl-4">
           <ul class="text-gray-300 space-y-2">
-            <li>• HTML, CSS,PHP and JavaScript</li>
+            <li>• HTML, CSS,PHP,Laravel,Filament and JavaScript</li>
             <li>• Responsive Web Design</li>
             <li>• Time Management</li>
           </ul>
