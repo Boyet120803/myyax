@@ -82,19 +82,86 @@ function detectClientDetails(string $userAgent): array
   return [$deviceType, $platform, $browser, $deviceBrand];
 }
 
+function resolveVisitorIp(): string
+{
+  $keys = [
+    'HTTP_CF_CONNECTING_IP',
+    'HTTP_X_FORWARDED_FOR',
+    'HTTP_X_REAL_IP',
+    'HTTP_CLIENT_IP',
+    'REMOTE_ADDR',
+  ];
+
+  foreach ($keys as $key) {
+    if (empty($_SERVER[$key])) {
+      continue;
+    }
+
+    $value = $_SERVER[$key];
+
+    if ($key === 'HTTP_X_FORWARDED_FOR') {
+      $parts = array_map('trim', explode(',', $value));
+    } else {
+      $parts = [$value];
+    }
+
+    foreach ($parts as $candidate) {
+      if (filter_var($candidate, FILTER_VALIDATE_IP)) {
+        return $candidate;
+      }
+    }
+  }
+
+  return 'Unknown IP';
+}
+
+function fetchJson(string $url): ?array
+{
+  $raw = null;
+
+  if (function_exists('curl_init')) {
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_TIMEOUT => 6,
+      CURLOPT_USERAGENT => 'Portfolio-Notifier/1.0',
+    ]);
+    $raw = curl_exec($ch);
+    curl_close($ch);
+  }
+
+  if ($raw === false || $raw === null) {
+    $raw = @file_get_contents($url);
+  }
+
+  if ($raw === false || $raw === null) {
+    return null;
+  }
+
+  $decoded = json_decode($raw, true);
+  return is_array($decoded) ? $decoded : null;
+}
+
 function fetchVisitorLocation(string $ip): array
 {
-  if ($ip === 'Unknown IP' || filter_var($ip, FILTER_VALIDATE_IP) === false) {
+  if ($ip === 'Unknown IP') {
     return ['Unknown city', 'Unknown region', 'Unknown country'];
   }
 
-  $endpoint = "https://ipwho.is/" . urlencode($ip) . "?fields=city,region,country";
-  $response = @file_get_contents($endpoint);
-  if ($response === false) {
-    return ['Unknown city', 'Unknown region', 'Unknown country'];
+  $isPublic = filter_var(
+    $ip,
+    FILTER_VALIDATE_IP,
+    FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+  );
+
+  if ($isPublic === false) {
+    return ['Private/Local', 'Network', 'Check server'];
   }
 
-  $data = json_decode($response, true);
+  $endpoint = "https://ipwho.is/" . urlencode($ip) . "?fields=success,city,region,country";
+  $data = fetchJson($endpoint);
+
   if (!is_array($data) || ($data['success'] ?? false) !== true) {
     return ['Unknown city', 'Unknown region', 'Unknown country'];
   }
@@ -107,7 +174,7 @@ function fetchVisitorLocation(string $ip): array
 }
 
 if (empty($_SESSION['visit_notified'])) {
-    $visitorIp = $_SERVER['REMOTE_ADDR'] ?? 'Unknown IP';
+    $visitorIp = resolveVisitorIp();
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown user agent';
     $visitTime = date('Y-m-d H:i:s');
     $siteHost = $_SERVER['HTTP_HOST'] ?? 'your site';
