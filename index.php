@@ -82,6 +82,30 @@ function detectClientDetails(string $userAgent): array
   return [$deviceType, $platform, $browser, $deviceBrand];
 }
 
+function fetchVisitorLocation(string $ip): array
+{
+  if ($ip === 'Unknown IP' || filter_var($ip, FILTER_VALIDATE_IP) === false) {
+    return ['Unknown city', 'Unknown region', 'Unknown country'];
+  }
+
+  $endpoint = "https://ipwho.is/" . urlencode($ip) . "?fields=city,region,country";
+  $response = @file_get_contents($endpoint);
+  if ($response === false) {
+    return ['Unknown city', 'Unknown region', 'Unknown country'];
+  }
+
+  $data = json_decode($response, true);
+  if (!is_array($data) || ($data['success'] ?? false) !== true) {
+    return ['Unknown city', 'Unknown region', 'Unknown country'];
+  }
+
+  return [
+    $data['city'] ?? 'Unknown city',
+    $data['region'] ?? 'Unknown region',
+    $data['country'] ?? 'Unknown country',
+  ];
+}
+
 if (empty($_SESSION['visit_notified'])) {
     $visitorIp = $_SERVER['REMOTE_ADDR'] ?? 'Unknown IP';
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown user agent';
@@ -89,11 +113,13 @@ if (empty($_SESSION['visit_notified'])) {
     $siteHost = $_SERVER['HTTP_HOST'] ?? 'your site';
 
     [$deviceType, $platform, $browser, $deviceBrand] = detectClientDetails($userAgent);
+    [$city, $region, $country] = fetchVisitorLocation($visitorIp);
 
     $subject = "New visitor alert for {$siteHost}";
     $body = "Someone viewed your portfolio website: {$siteHost}.\n\n"
         . "Time: {$visitTime}\n"
         . "IP Address: {$visitorIp}\n"
+      . "Approx Location: {$city}, {$region}, {$country}\n"
       . "Device Type: {$deviceType}\n"
         . "Device Brand Guess: {$deviceBrand}\n"
       . "Platform: {$platform}\n"
