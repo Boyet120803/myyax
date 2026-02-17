@@ -1,3 +1,48 @@
+<?php
+session_start();
+
+require __DIR__ . '/vendor/autoload.php';
+
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+
+if (empty($_SESSION['visit_notified'])) {
+    $visitorIp = $_SERVER['REMOTE_ADDR'] ?? 'Unknown IP';
+    $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown user agent';
+    $visitTime = date('Y-m-d H:i:s');
+    $siteHost = $_SERVER['HTTP_HOST'] ?? 'your site';
+
+    $subject = "New visitor alert for {$siteHost}";
+    $body = "Someone viewed {$siteHost}.\n\n"
+        . "Time: {$visitTime}\n"
+        . "IP Address: {$visitorIp}\n"
+        . "User Agent: {$userAgent}\n";
+
+    $mailer = new PHPMailer(true);
+
+    try {
+        $mailer->isSMTP();
+        $mailer->Host = getenv('MAIL_HOST') ?: 'smtp.gmail.com';
+        $mailer->SMTPAuth = true;
+        $mailer->Username = getenv('MAIL_USERNAME') ?: 'dedalboyet16@gmail.com';
+        $mailer->Password = getenv('MAIL_PASSWORD') ?: 'mxxiuxxnphwkgryc';
+        $mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mailer->Port = getenv('MAIL_PORT') ?: 587;
+
+        $mailer->setFrom($mailer->Username, 'Portfolio Notifier');
+        $mailer->addAddress('dedalboyet16@gmail.com');
+
+        $mailer->Subject = $subject;
+        $mailer->Body = $body;
+
+        $mailer->send();
+    } catch (Exception $e) {
+        error_log('Visitor notification failed: ' . $mailer->ErrorInfo);
+    }
+
+    $_SESSION['visit_notified'] = true;
+}
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
