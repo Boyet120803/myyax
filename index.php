@@ -261,6 +261,80 @@
                 left: 0;
             }
 
+            .site-nav {
+              position: fixed;
+              top: 0;
+              left: 0;
+              right: 0;
+              z-index: 60;
+              width: 100%;
+              max-width: 100vw;
+              overflow-x: hidden;
+            }
+
+            .site-nav .nav-shell {
+              width: 100%;
+            }
+
+            .site-nav .nav-bar {
+              display: grid;
+              grid-template-columns: auto 1fr auto;
+              align-items: center;
+              gap: 0.75rem;
+            }
+
+            .site-nav .nav-brand {
+              justify-self: center;
+            }
+
+            .site-nav .nav-controls {
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+              gap: 0.75rem;
+            }
+
+            @media (min-width: 768px) {
+              .site-nav .nav-bar {
+                display: flex;
+                flex-wrap: wrap;
+              }
+
+              .site-nav .nav-brand {
+                justify-self: flex-start;
+              }
+            }
+
+            .site-nav .nav-brand,
+            .site-nav .nav-controls {
+              min-width: 0;
+            }
+
+            .site-nav .nav-controls {
+              justify-content: flex-end;
+            }
+
+            .site-nav #mobile-menu {
+              width: 100%;
+              max-width: 100%;
+            }
+
+            @media (max-width: 640px) {
+              .site-nav .nav-shell {
+                padding-left: 1rem;
+                padding-right: 1rem;
+              }
+
+              .site-nav .nav-brand {
+                text-align: center;
+              }
+
+              .site-nav .nav-controls {
+                width: 100%;
+                justify-content: space-between;
+              }
+            }
+
             .timeline-line {
                 background: linear-gradient(180deg, transparent, #57B5E7, transparent);
                 animation: timeline-glow 4s ease-in-out infinite;
@@ -536,16 +610,25 @@
 
         <!-- Cursor Trail -->
         <div class="cursor-trail"></div>
-            <nav class="fixed top-0 w-full z-40 glass-morphism">
-            <div class="max-w-7xl mx-auto px-6 py-4">
-                <div class="flex items-center justify-between">
+            <nav class="site-nav fixed top-0 w-full z-40 glass-morphism">
+            <div class="nav-shell max-w-7xl w-full mx-auto px-4 sm:px-6 py-4">
+              <div class="nav-bar items-center">
+                <button
+                  id="theme-toggle"
+                  class="theme-toggle order-1 md:order-3 md:ml-4 w-10 h-10 rounded-full flex items-center justify-center"
+                  type="button"
+                  aria-label="Toggle theme"
+                  aria-pressed="false"
+                >
+                  <i class="ri-sun-line text-xl"></i>
+                </button>
                 <div
-                    class="text-xl font-bold text-gradient"
+                  class="nav-brand order-2 md:order-1 text-lg sm:text-xl font-bold text-gradient text-center md:text-left"
                     style="font-family: 'Orbitron', monospace;"
                 >
                     BOYET.DEDAL
                 </div>
-                <div class="flex items-center space-x-4">
+                <div class="nav-controls order-3 md:order-2 w-full md:w-auto md:ml-auto flex items-center justify-end space-x-0 sm:space-x-4">
                   <!-- DESKTOP MENU -->
                   <div class="hidden md:flex space-x-8">
                     <a href="#home" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">HOME</a>
@@ -555,16 +638,6 @@
                     <a href="#experience" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">EXPERIENCE</a>
                     <a href="#contact" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">CONTACT</a>
                   </div>
-
-                  <button
-                    id="theme-toggle"
-                    class="theme-toggle w-10 h-10 rounded-full flex items-center justify-center"
-                    type="button"
-                    aria-label="Toggle theme"
-                    aria-pressed="false"
-                  >
-                    <i class="ri-sun-line text-xl"></i>
-                  </button>
 
                   <!-- HAMBURGER BUTTON -->
                   <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center z-50 relative">
@@ -576,7 +649,7 @@
                 <!-- MOBILE MENU -->
                 <div
                 id="mobile-menu"
-                class="hidden flex-col mt-4 space-y-4 md:hidden glass-morphism p-4 rounded-lg"
+                class="hidden w-full flex-col mt-4 space-y-4 md:hidden glass-morphism p-4 rounded-lg"
                 >
                 <a href="#home" class="block py-2">HOME</a>
                 <a href="#about" class="block py-2">ABOUT</a>
@@ -591,7 +664,7 @@
         <!-- Hero Section -->
         <section
         id="home"
-        class="min-h-screen hero-bg relative overflow-hidden flex items-center"
+        class="min-h-screen hero-bg relative overflow-hidden flex items-center pt-28 lg:pt-0"
         >
         <!-- Animated Particles -->
         <div class="absolute inset-0">
@@ -667,7 +740,7 @@
                           <div class="w-full h-full overflow-hidden flex items-center justify-center">
                               <img id="avatar-img" src="assets/img/boyetyet.png" alt="User" class="w-full h-full object-contain" />
                           </div>
-                      </div>
+                       </div>
                   </div>
               </div>
             </div>
