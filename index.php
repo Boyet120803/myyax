@@ -48,6 +48,11 @@
                 box-sizing: border-box;
             }
 
+            html {
+              width: 100%;
+              overflow-x: hidden; /* Clamp layout to viewport to stop horizontal scroll */
+            }
+
             body {
                 font-family: 'Exo 2', sans-serif;
               background: #311E4C;
