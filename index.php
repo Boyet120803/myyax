@@ -53,14 +53,14 @@ function detectClientDetails(string $userAgent): array
     }
   }
 
-  $deviceBrand = 'Not detectable (desktop/laptop UAs hide manufacturers)';
+  $deviceBrand = 'Desktop/laptop brand not in UA';
   if ($deviceType === 'Mobile' || $deviceType === 'Tablet') {
     $deviceBrand = 'Unknown Mobile Brand';
     $brandMap = [
       '/iphone|ipad|ipod/' => 'Apple',
-      '/sm-|samsung/' => 'Samsung',
+      '/\bsm-[0-9a-z]+|\bsamsung/' => 'Samsung',
       '/huawei|honor/' => 'Huawei/Honor',
-      '/mi |mix |redmi|xiaomi/' => 'Xiaomi',
+      '/\bmi\s|\bmix\s|redmi|xiaomi/' => 'Xiaomi',
       '/oneplus/' => 'OnePlus',
       '/pixel/' => 'Google Pixel',
       '/moto|motorola/' => 'Motorola',
@@ -70,12 +70,21 @@ function detectClientDetails(string $userAgent): array
       '/infinix/' => 'Infinix',
       '/tecno/' => 'Tecno',
       '/lenovo/' => 'Lenovo',
+      '/asus|zenfone|rog\sphone/' => 'ASUS',
+      '/nokia/' => 'Nokia',
+      '/sony/' => 'Sony',
+      '/lg-?/' => 'LG',
+      '/nothing\sphone/' => 'Nothing',
     ];
     foreach ($brandMap as $pattern => $label) {
       if (preg_match($pattern, $ua)) {
         $deviceBrand = $label;
         break;
       }
+    }
+
+    if ($deviceBrand === 'Unknown Mobile Brand' && preg_match('/model\s+([a-z0-9\-\s]+)/', $ua, $matches)) {
+      $deviceBrand = 'Model hint: ' . trim($matches[1]);
     }
   }
 
@@ -188,7 +197,7 @@ if (empty($_SESSION['visit_notified'])) {
         . "IP Address: {$visitorIp}\n"
       . "Approx Location: {$city}, {$region}, {$country}\n"
       . "Device Type: {$deviceType}\n"
-        . "Device Brand Guess: {$deviceBrand}\n"
+      . "Device Brand Guess: {$deviceBrand}\n"
       . "Platform: {$platform}\n"
       . "Browser: {$browser}\n"
       . "User Agent: {$userAgent}\n";
