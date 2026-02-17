@@ -6,17 +6,72 @@ require __DIR__ . '/vendor/autoload.php';
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
+function detectClientDetails(string $userAgent): array
+{
+  $ua = strtolower($userAgent);
+
+  $deviceType = 'Desktop';
+  if (preg_match('/ipad|tablet|nexus 7|nexus 10|kindle/i', $userAgent)) {
+    $deviceType = 'Tablet';
+  } elseif (preg_match('/mobile|iphone|ipod|android|blackberry|opera mini|iemobile/i', $userAgent)) {
+    $deviceType = 'Mobile';
+  }
+
+  $platform = 'Unknown OS';
+  $platformMap = [
+    'windows nt 10' => 'Windows 10/11',
+    'windows nt 6\.3' => 'Windows 8.1',
+    'windows nt 6\.2' => 'Windows 8',
+    'windows nt 6\.1' => 'Windows 7',
+    'mac os x' => 'macOS',
+    'android' => 'Android',
+    'iphone' => 'iOS',
+    'ipad' => 'iPadOS',
+    'linux' => 'Linux',
+    'cros' => 'ChromeOS',
+  ];
+  foreach ($platformMap as $pattern => $label) {
+    if (preg_match("/{$pattern}/", $ua)) {
+      $platform = $label;
+      break;
+    }
+  }
+
+  $browser = 'Unknown Browser';
+  $browserMap = [
+    'edg' => 'Microsoft Edge',
+    'chrome' => 'Chrome',
+    'safari' => 'Safari',
+    'firefox' => 'Firefox',
+    'opr|opera' => 'Opera',
+    'msie|trident' => 'Internet Explorer',
+  ];
+  foreach ($browserMap as $pattern => $label) {
+    if (preg_match("/{$pattern}/", $ua)) {
+      $browser = $label;
+      break;
+    }
+  }
+
+  return [$deviceType, $platform, $browser];
+}
+
 if (empty($_SESSION['visit_notified'])) {
     $visitorIp = $_SERVER['REMOTE_ADDR'] ?? 'Unknown IP';
     $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown user agent';
     $visitTime = date('Y-m-d H:i:s');
     $siteHost = $_SERVER['HTTP_HOST'] ?? 'your site';
 
+    [$deviceType, $platform, $browser] = detectClientDetails($userAgent);
+
     $subject = "New visitor alert for {$siteHost}";
-    $body = "Someone viewed {$siteHost}.\n\n"
+    $body = "Someone viewed your portfolio website: {$siteHost}.\n\n"
         . "Time: {$visitTime}\n"
         . "IP Address: {$visitorIp}\n"
-        . "User Agent: {$userAgent}\n";
+      . "Device Type: {$deviceType}\n"
+      . "Platform: {$platform}\n"
+      . "Browser: {$browser}\n"
+      . "User Agent: {$userAgent}\n";
 
     $mailer = new PHPMailer(true);
 
