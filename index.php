@@ -53,7 +53,33 @@ function detectClientDetails(string $userAgent): array
     }
   }
 
-  return [$deviceType, $platform, $browser];
+  $deviceBrand = 'Not detectable (desktop/laptop UAs hide manufacturers)';
+  if ($deviceType === 'Mobile' || $deviceType === 'Tablet') {
+    $deviceBrand = 'Unknown Mobile Brand';
+    $brandMap = [
+      '/iphone|ipad|ipod/' => 'Apple',
+      '/sm-|samsung/' => 'Samsung',
+      '/huawei|honor/' => 'Huawei/Honor',
+      '/mi |mix |redmi|xiaomi/' => 'Xiaomi',
+      '/oneplus/' => 'OnePlus',
+      '/pixel/' => 'Google Pixel',
+      '/moto|motorola/' => 'Motorola',
+      '/vivo/' => 'Vivo',
+      '/oppo/' => 'OPPO',
+      '/realme/' => 'Realme',
+      '/infinix/' => 'Infinix',
+      '/tecno/' => 'Tecno',
+      '/lenovo/' => 'Lenovo',
+    ];
+    foreach ($brandMap as $pattern => $label) {
+      if (preg_match($pattern, $ua)) {
+        $deviceBrand = $label;
+        break;
+      }
+    }
+  }
+
+  return [$deviceType, $platform, $browser, $deviceBrand];
 }
 
 if (empty($_SESSION['visit_notified'])) {
@@ -62,13 +88,14 @@ if (empty($_SESSION['visit_notified'])) {
     $visitTime = date('Y-m-d H:i:s');
     $siteHost = $_SERVER['HTTP_HOST'] ?? 'your site';
 
-    [$deviceType, $platform, $browser] = detectClientDetails($userAgent);
+    [$deviceType, $platform, $browser, $deviceBrand] = detectClientDetails($userAgent);
 
     $subject = "New visitor alert for {$siteHost}";
     $body = "Someone viewed your portfolio website: {$siteHost}.\n\n"
         . "Time: {$visitTime}\n"
         . "IP Address: {$visitorIp}\n"
       . "Device Type: {$deviceType}\n"
+        . "Device Brand Guess: {$deviceBrand}\n"
       . "Platform: {$platform}\n"
       . "Browser: {$browser}\n"
       . "User Agent: {$userAgent}\n";
