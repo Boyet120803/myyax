@@ -1216,10 +1216,6 @@
                     <img src="assets/img/chrome.png" alt="Chrome" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
                     <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Chrome</span>
                   </div>
-                  <div class="tech-icon-wrapper group relative cursor-pointer">
-                    <img src="assets/img/chatgpt.jpg" alt="ChatGPT" class="h-10 w-10 object-contain transition-transform group-hover:scale-125" />
-                    <span class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-white text-black text-xs font-semibold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">ChatGPT</span>
-                  </div>
                 </div>
                 <div class="flex flex-wrap items-center gap-8">
                   <div class="flex items-center gap-4">
