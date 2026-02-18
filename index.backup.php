@@ -467,421 +467,7 @@
                 }
 
                 .rotate-y-180 { transform: rotateY(180deg); }
-                /* Skill Progress Bar Animation */
-                @keyframes fillProgress {
-                  from { width: 0%; }
-                  to { width: var(--progress); }
-                }
 
-                @keyframes fadeInUp {
-                  from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                  }
-                  to {
-                    opacity: 1;
-                    transform: translateY(0);
-                  }
-                }
-
-                .skill-progress-bar {
-                  height: 6px;
-                  background: rgba(255, 255, 255, 0.1);
-                  border-radius: 10px;
-                  overflow: hidden;
-                  margin-top: 8px;
-                  position: relative;
-                }
-
-                .skill-fill {
-                  height: 100%;
-                  border-radius: 10px;
-                  animation: fillProgress 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-                  background: linear-gradient(90deg, #57B5E7, #8B45C1, #14B8A6);
-                  box-shadow: 0 0 15px rgba(87, 181, 231, 0.5);
-                }
-
-                .skill-item {
-                  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-
-                .skill-item:hover {
-                  transform: translateX(4px);
-                }
-
-                /* Enhanced Resume Cards */
-                .resume-card {
-                  padding: 20px;
-                  border-radius: 16px;
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.1) 0%, rgba(139, 69, 193, 0.05) 100%);
-                  backdrop-filter: blur(10px);
-                  border: 1px solid rgba(87, 181, 231, 0.2);
-                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  position: relative;
-                  overflow: hidden;
-                }
-
-                .resume-card::before {
-                  content: '';
-                  position: absolute;
-                  top: 0;
-                  left: -100%;
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-                  transition: left 0.5s ease;
-                }
-
-                .resume-card:hover::before {
-                  left: 100%;
-                }
-
-                .resume-card:hover {
-                  transform: translateY(-8px);
-                  border-color: rgba(87, 181, 231, 0.5);
-                  box-shadow: 0 15px 40px rgba(87, 181, 231, 0.15);
-                }
-
-                .resume-card-icon {
-                  width: 48px;
-                  height: 48px;
-                  border-radius: 12px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 24px;
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.2), rgba(139, 69, 193, 0.2));
-                  margin-bottom: 12px;
-                  transition: all 0.3s ease;
-                }
-
-                .resume-card:hover .resume-card-icon {
-                  transform: scale(1.1) rotate(5deg);
-                }
-
-                /* ===== PROJECTS SECTION STYLING ===== */
-
-                /* Enhanced Project Card Container */
-                .project-card {
-                  position: relative;
-                  cursor: pointer;
-                  transform-style: preserve-3d;
-                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-
-                .project-card:hover {
-                  transform: translateY(-12px) scale(1.02);
-                  filter: drop-shadow(0 25px 50px rgba(87, 181, 231, 0.25));
-                }
-
-                .project-inner {
-                  transform-style: preserve-3d;
-                  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-                }
-
-                .project-front, .project-back {
-                  backface-visibility: hidden;
-                  -webkit-backface-visibility: hidden;
-                }
-
-                /* Front Side Enhancement */
-                .project-front {
-                  background-size: cover;
-                  background-position: center;
-                  border-radius: 20px;
-                  overflow: hidden;
-                  position: relative;
-                }
-
-                .project-front::before {
-                  content: '';
-                  position: absolute;
-                  inset: 0;
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.2) 0%, rgba(139, 69, 193, 0.1) 50%, transparent 100%);
-                  z-index: 5;
-                  transition: all 0.4s ease;
-                }
-
-                .project-card:hover .project-front::before {
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.4) 0%, rgba(139, 69, 193, 0.2) 50%, transparent 100%);
-                }
-
-                /* Enhanced Project Icon */
-                .project-front i {
-                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  text-shadow: 0 0 20px rgba(87, 181, 231, 0.4);
-                }
-
-                .project-card:hover .project-front i {
-                  text-shadow: 0 0 40px rgba(87, 181, 231, 0.8);
-                  transform: scale(1.15) rotateZ(10deg);
-                }
-
-                /* Enhanced Project Title */
-                .project-front h3 {
-                  position: relative;
-                  z-index: 10;
-                  font-weight: 800;
-                  letter-spacing: 0.5px;
-                  transition: all 0.3s ease;
-                }
-
-                .project-card:hover .project-front h3 {
-                  color: #57B5E7;
-                }
-
-                /* Enhanced Project Tags/Badges */
-                .project-card .px-3.py-1 {
-                  position: relative;
-                  overflow: hidden;
-                  font-weight: 600;
-                  letter-spacing: 0.3px;
-                  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                  border: 1px solid;
-                }
-
-                .project-front .px-3.py-1[class*="bg-primary"] {
-                  background: rgba(87, 181, 231, 0.25) !important;
-                  border-color: rgba(87, 181, 231, 0.5) !important;
-                }
-
-                .project-front .px-3.py-1[class*="bg-primary"]:hover {
-                  background: rgba(87, 181, 231, 0.4) !important;
-                  box-shadow: 0 0 15px rgba(87, 181, 231, 0.5);
-                  transform: translateY(-2px);
-                }
-
-                .project-front .px-3.py-1[class*="bg-purple"] {
-                  background: rgba(168, 85, 247, 0.25) !important;
-                  border-color: rgba(168, 85, 247, 0.5) !important;
-                }
-
-                .project-front .px-3.py-1[class*="bg-pink"] {
-                  background: rgba(236, 72, 153, 0.25) !important;
-                  border-color: rgba(236, 72, 153, 0.5) !important;
-                }
-
-                .project-front .px-3.py-1[class*="bg-indigo"] {
-                  background: rgba(99, 102, 241, 0.25) !important;
-                  border-color: rgba(99, 102, 241, 0.5) !important;
-                }
-
-                .project-front .px-3.py-1[class*="bg-cyan"] {
-                  background: rgba(34, 211, 238, 0.25) !important;
-                  border-color: rgba(34, 211, 238, 0.5) !important;
-                }
-
-                .project-front .px-3.py-1[class*="bg-secondary"] {
-                  background: rgba(141, 211, 199, 0.25) !important;
-                  border-color: rgba(141, 211, 199, 0.5) !important;
-                }
-
-                /* Back Side Enhancement */
-                .project-back {
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.12) 0%, rgba(139, 69, 193, 0.08) 100%);
-                  backdrop-filter: blur(20px);
-                  border: 1.5px solid rgba(87, 181, 231, 0.3);
-                  border-radius: 20px;
-                }
-
-                .project-back:hover {
-                  border-color: rgba(87, 181, 231, 0.6);
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.15) 0%, rgba(139, 69, 193, 0.1) 100%);
-                }
-
-                .project-back h3 {
-                  font-size: 1.125rem;
-                  font-weight: 800;
-                  background: linear-gradient(135deg, #57B5E7, #8B45C1);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                  background-clip: text;
-                  margin-bottom: 16px;
-                }
-
-                .project-back ul li {
-                  transition: all 0.3s ease;
-                  padding-left: 4px;
-                }
-
-                .project-back ul li:hover {
-                  transform: translateX(6px);
-                  color: #57B5E7;
-                }
-
-                .project-back a {
-                  position: relative;
-                  overflow: hidden;
-                  background: linear-gradient(135deg, #57B5E7, #8B45C1);
-                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  font-weight: 700;
-                  letter-spacing: 0.5px;
-                  box-shadow: 0 10px 30px rgba(87, 181, 231, 0.3);
-                }
-
-                .project-back a::before {
-                  content: '';
-                  position: absolute;
-                  top: 0;
-                  left: -100%;
-                  width: 100%;
-                  height: 100%;
-                  background: rgba(255, 255, 255, 0.2);
-                  transition: left 0.5s ease;
-                  z-index: 1;
-                }
-
-                .project-back a:hover::before {
-                  left: 100%;
-                }
-
-                .project-back a:hover {
-                  transform: translateY(-3px);
-                  box-shadow: 0 15px 40px rgba(87, 181, 231, 0.5);
-                }
-
-                /* Stagger animations for cards */
-                .project-card:nth-child(1) { animation-delay: 0s; }
-                .project-card:nth-child(2) { animation-delay: 0.15s; }
-                .project-card:nth-child(3) { animation-delay: 0.30s; }
-                .project-card:nth-child(4) { animation-delay: 0.45s; }
-                .project-card:nth-child(5) { animation-delay: 0.60s; }
-                .project-card:nth-child(6) { animation-delay: 0.75s; }
-
-                /* ===== ABOUT SECTION STYLING ===== */
-
-                /* Enhanced About Card Container */
-                .about-card {
-                  padding: 32px;
-                  border-radius: 20px;
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.08) 0%, rgba(141, 211, 199, 0.05) 100%);
-                  backdrop-filter: blur(12px);
-                  border: 1.5px solid rgba(87, 181, 231, 0.25);
-                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  position: relative;
-                  overflow: hidden;
-                  animation: fadeInUp 0.6s ease-out forwards;
-                  opacity: 0;
-                }
-
-                .about-card::before {
-                  content: '';
-                  position: absolute;
-                  top: 0;
-                  left: -100%;
-                  width: 100%;
-                  height: 100%;
-                  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-                  transition: left 0.5s ease;
-                }
-
-                .about-card:hover::before {
-                  left: 100%;
-                }
-
-                .about-card:hover {
-                  transform: translateY(-10px);
-                  border-color: rgba(87, 181, 231, 0.4);
-                  box-shadow: 0 20px 50px rgba(87, 181, 231, 0.12);
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.12) 0%, rgba(141, 211, 199, 0.08) 100%);
-                }
-
-                /* Enhanced About Card Icon */
-                .about-card-icon {
-                  width: 64px;
-                  height: 64px;
-                  border-radius: 16px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 32px;
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.2), rgba(141, 211, 199, 0.15));
-                  margin-bottom: 16px;
-                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                  border: 1px solid rgba(87, 181, 231, 0.15);
-                  box-shadow: inset 0 0 20px rgba(87, 181, 231, 0.1), 0 0 20px rgba(87, 181, 231, 0.15);
-                  position: relative;
-                }
-
-                .about-card-icon::after {
-                  content: '';
-                  position: absolute;
-                  inset: -2px;
-                  border-radius: 16px;
-                  background: radial-gradient(circle, rgba(87, 181, 231, 0.4) 0%, transparent 70%);
-                  opacity: 0;
-                  transition: opacity 0.4s ease;
-                  z-index: -1;
-                }
-
-                .about-card:hover .about-card-icon {
-                  transform: scale(1.15) rotate(-5deg);
-                  background: linear-gradient(135deg, rgba(87, 181, 231, 0.35), rgba(141, 211, 199, 0.25));
-                  border-color: rgba(87, 181, 231, 0.4);
-                  box-shadow: inset 0 0 30px rgba(87, 181, 231, 0.2), 0 0 40px rgba(87, 181, 231, 0.25);
-                }
-
-                .about-card:hover .about-card-icon::after {
-                  opacity: 1;
-                }
-
-                /* About Card Icon - Individual Color Variants */
-                .about-card:nth-child(1) .about-card-icon {
-                  color: #57B5E7;
-                }
-
-                .about-card:nth-child(2) .about-card-icon {
-                  color: #8DD3C7;
-                }
-
-                .about-card:nth-child(3) .about-card-icon {
-                  color: #913ADC;
-                }
-
-                /* Enhanced About Card Title */
-                .about-card h3 {
-                  font-size: 1.375rem;
-                  font-weight: 700;
-                  letter-spacing: 0.5px;
-                  background: linear-gradient(135deg, #ffffff 0%, #d1d5db 100%);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                  background-clip: text;
-                  transition: all 0.3s ease;
-                  margin-bottom: 12px;
-                }
-
-                .about-card:hover h3 {
-                  background: linear-gradient(135deg, #57B5E7 0%, #8DD3C7 100%);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                  background-clip: text;
-                }
-
-                /* Enhanced About Card Paragraph */
-                .about-card p {
-                  font-size: 0.95rem;
-                  line-height: 1.6;
-                  color: #d1d5db;
-                  transition: all 0.3s ease;
-                }
-
-                .about-card:hover p {
-                  color: #f3f4f6;
-                }
-
-                /* Stagger animations for about cards */
-                #about .grid > div:nth-child(1) {
-                  animation-delay: 0s;
-                }
-
-                #about .grid > div:nth-child(2) {
-                  animation-delay: 0.15s;
-                }
-
-                #about .grid > div:nth-child(3) {
-                  animation-delay: 0.30s;
-                }
 
         </style>
         <!-- Tailwind CSS (for reference) -->
@@ -1256,31 +842,31 @@
           </div>
 
           <!-- Skills / Projects -->
-          <div class="grid lg:grid-cols-3 gap-8">
-            <div class="about-card">
-              <div class="about-card-icon">
+          <div class="grid lg:grid-cols-3 gap-8 animate-fade-in">
+            <div class="p-8 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 hover:scale-105 transition-transform duration-500 flex flex-col items-start gap-4">
+              <div class="w-12 h-12 flex items-center justify-center text-3xl text-purple-400 animate-bounce">
                 <i class="ri-code-s-slash-line"></i>
               </div>
-              <h3>Web Development</h3>
-              <p>
+              <h3 class="text-xl font-bold mb-2 text-white">Web Development</h3>
+              <p class="text-gray-300">
                 HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, PHP, Laravel
               </p>
             </div>
-            <div class="about-card">
-              <div class="about-card-icon">
+            <div class="p-8 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 hover:scale-105 transition-transform duration-500 flex flex-col items-start gap-4">
+              <div class="w-12 h-12 flex items-center justify-center text-3xl text-indigo-400 animate-bounce">
                 <i class="ri-database-line"></i>
               </div>
-              <h3>Database Management</h3>
-              <p>
+              <h3 class="text-xl font-bold mb-2 text-white">Database Management</h3>
+              <p class="text-gray-300">
                 MySQL, CRUD operations, data organization, and optimization
               </p>
             </div>
-            <div class="about-card">
-              <div class="about-card-icon">
+            <div class="p-8 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 hover:scale-105 transition-transform duration-500 flex flex-col items-start gap-4">
+              <div class="w-12 h-12 flex items-center justify-center text-3xl text-pink-400 animate-bounce">
                 <i class="ri-briefcase-line"></i>
               </div>
-              <h3>Projects</h3>
-              <p>
+              <h3 class="text-xl font-bold mb-2 text-white">Projects</h3>
+              <p class="text-gray-300">
                 Student Profile Registration System, Voting System, ID Maker System (MLG & HNVS)
               </p>
             </div>
@@ -1290,165 +876,98 @@
         <div class="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
       </section>
-   <section id="resume" class="py-20 relative overflow-hidden">
+   <section id="resume" class="py-20">
   <div class="max-w-7xl mx-auto px-6">
-    <!-- Decorative elements -->
-    <div class="absolute top-10 right-0 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
-    <div class="absolute bottom-0 left-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
 
     <!-- Title -->
-    <h2 class="text-5xl font-extrabold text-center mb-4 text-gradient relative z-10"
+    <h2 class="text-4xl font-bold text-center mb-16 text-gradient"
         style="font-family: 'Orbitron', monospace;">
       MY RESUME
     </h2>
-    <p class="text-center text-gray-300 mb-16 text-lg">Complete professional profile & credentials</p>
 
     <!-- 2 Columns -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
 
       <!-- LEFT COLUMN -->
-      <div class="space-y-8">
+      <div>
 
-        <!-- Summary Card -->
-        <div class="resume-card animate-fade-in">
-          <div class="flex items-start gap-4 mb-4">
-            <div class="resume-card-icon text-primary">
-              <i class="ri-user-line"></i>
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold text-white">Profile</h3>
-              <p class="text-xs text-primary font-semibold uppercase tracking-wider">Personal Information</p>
-            </div>
-          </div>
-          <p class="text-sm text-primary font-bold mb-3">BOYET A. DEDAL</p>
-          <p class="text-gray-300 leading-relaxed text-sm mb-4">
+        <!-- Summary -->
+        <h3 class="text-2xl font-bold mb-4">Summary</h3>
+        <div class="border-l-2 border-primary pl-4 space-y-3">
+          <p class="text-sm text-primary font-semibold">BOYET A. DEDAL</p>
+          <p class="text-gray-300 leading-relaxed">
             A hardworking Information Technology student who is eager to learn and improve. Passionate about using technical skills to create useful solutions and contribute to real projects.
           </p>
-          <div class="space-y-2 text-sm text-gray-400">
-            <div class="flex items-center gap-2"><i class="ri-user-6-line text-primary"></i> Age: <span class="text-white">22</span></div>
-            <div class="flex items-center gap-2"><i class="ri-map-pin-line text-primary"></i> Hindang, Leyte, Philippines</div>
-            <div class="flex items-center gap-2"><i class="ri-phone-line text-primary"></i> <span class="text-white">0991 652 9335</span></div>
-            <div class="flex items-center gap-2"><i class="ri-mail-line text-primary"></i> <span class="text-white">dedalboyet16@gmail.com</span></div>
-          </div>
+
+          <ul class="text-gray-400 space-y-1">
+            <li>• Age: 22</li>
+            <li>• Hindang, Leyte, Philippines</li>
+            <li>• 0991 652 9335</li>
+            <li>• dedalboyet16@gmail.com</li>
+          </ul>
         </div>
 
-        <!-- Education Card -->
-        <div class="resume-card animate-fade-in" style="animation-delay: 0.1s;">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="resume-card-icon text-secondary">
-              <i class="ri-book-line"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-white">Education</h3>
-          </div>
-          
-          <!-- Primary -->
-          <div class="mb-4 pl-2 border-l-2 border-secondary/40">
-            <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">PRIMARY</p>
-            <p class="text-gray-300 font-semibold text-sm">Baldoza Elementary School</p>
-            <p class="text-gray-400 text-xs">2006 – 2007 • Hindang, Leyte</p>
-          </div>
+        <!-- Education -->
+        <h3 class="text-2xl font-bold mt-10 mb-4">Education</h3>
+      <div class="border-l-2 border-primary pl-4 space-y-3">
 
-          <!-- Secondary -->
-          <div class="mb-4 pl-2 border-l-2 border-secondary/40">
-            <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">SECONDARY</p>
-            <p class="text-gray-300 font-semibold text-sm">2017 – 2020</p>
-            <ul class="text-gray-400 text-xs space-y-1 mt-1">
-              <li>• Hindang National High School (JHS)</li>
-              <li>• Hindang Stand Alone Senior High School (SHS)</li>
-            </ul>
-          </div>
+    
+        <!-- Primary -->
+        <div class="mb-6 ">
+          <p class="text-sm text-primary font-semibold">PRIMARY</p>
+          <p class="text-gray-400 text-sm">2006 – 2007</p>
+          <p class="text-gray-300">Baldoza Elementary School, Hindang Leyte</p>
+        </div>
 
-          <!-- Tertiary -->
-          <div class="pl-2 border-l-2 border-secondary/40">
-            <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">TERTIARY</p>
-            <p class="text-gray-300 font-semibold text-sm">Bachelor of Science in Information Technology</p>
-            <p class="text-gray-400 text-xs">2021 – 2025</p>
-          </div>
+        <!-- Secondary -->
+        <div class="mb-6">
+          <p class="text-sm text-primary font-semibold">SECONDARY</p>
+          <p class="text-gray-400 text-sm">2017 – 2020</p>
+
+          <ul class="text-gray-300 space-y-1">
+            <li>Junior High School</li>
+            <li><p class="text-gray-400 text-sm">• Hindang National High School</p></li>
+            <li>Senior High School</li>
+            <li><p class="text-gray-400 text-sm">• Hindang Stand Alone Senior High School</p></li>
+          </ul>
+        </div>
+
+        <!-- Tertiary -->
+        <div class="mb-6">
+          <p class="text-sm text-primary font-semibold">TERTIARY</p>
+          <p class="text-gray-400 text-sm">2021 – 2025</p>
+
+          <p class="text-gray-400 text-sm">• Bachelor of Science in Information Technology</p>
         </div>
       </div>
-
+      </div>
       <!-- RIGHT COLUMN -->
-      <div class="space-y-8">
+      <div>
 
-        <!-- Work Experience Card -->
-        <div class="resume-card animate-fade-in" style="animation-delay: 0.2s;">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="resume-card-icon text-pink-400">
-              <i class="ri-briefcase-line"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-white">Experience</h3>
-          </div>
-          
-          <div class="pl-2 border-l-2 border-pink-400/40">
-            <p class="text-xs text-pink-400 font-bold uppercase tracking-wider mb-1">Web Developer</p>
-            <p class="text-gray-300 font-semibold text-sm">Creative Dev Labs Company</p>
-            <p class="text-gray-400 text-xs mb-3">October 2023 – 2024 • Project-Based Employee</p>
-            <ul class="text-gray-300 text-sm space-y-2">
-              <li class="flex items-start gap-2"><i class="ri-check-line text-primary mt-0.5"></i> CDL block upgrades & system enhancements</li>
-              <li class="flex items-start gap-2"><i class="ri-check-line text-primary mt-0.5"></i> Data Mining & analytics</li>
-              <li class="flex items-start gap-2"><i class="ri-check-line text-primary mt-0.5"></i> Web development & technical support</li>
-            </ul>
-          </div>
-        </div>
+        <!-- Work Experience -->
+        <h3 class="text-2xl font-bold mb-4">Work Experience</h3>
 
-        <!-- Skills Card -->
-        <div class="resume-card animate-fade-in" style="animation-delay: 0.3s;">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="resume-card-icon text-purple-400">
-              <i class="ri-code-box-line"></i>
-            </div>
-            <h3 class="text-2xl font-bold text-white">Skills</h3>
-          </div>
+      <div class="border-l-2 border-primary pl-4 space-y-3 fade-in-up">
+        <p class="text-primary text-sm font-semibold">WORK EXPERIENCE</p>
+        <p class="text-gray-400 text-sm">Web Developer (2022 – 2024)</p>
+        <p class="text-gray-400 text-sm">Creative Dev Labs Company (October 31, 2023 – 2024)</p>
+        <p class="text-gray-400 text-sm">Project Based Employee</p>
 
-          <div class="space-y-4">
-            <!-- Skill 1 -->
-            <div class="skill-item">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-semibold text-gray-200">Web Development</span>
-                <span class="text-xs text-primary font-bold">95%</span>
-              </div>
-              <div class="skill-progress-bar">
-                <div class="skill-fill" style="--progress: 95%;"></div>
-              </div>
-              <p class="text-xs text-gray-400 mt-1">HTML, CSS, PHP, Laravel, JavaScript</p>
-            </div>
+        <ul class="text-gray-300 space-y-2 mt-2">
+          <li>• CDL upgrade to blocks</li>
+          <li>• Data Mining</li>
+        </ul>
+      </div>
 
-            <!-- Skill 2 -->
-            <div class="skill-item">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-semibold text-gray-200">Database Design</span>
-                <span class="text-xs text-secondary font-bold">88%</span>
-              </div>
-              <div class="skill-progress-bar">
-                <div class="skill-fill" style="--progress: 88%;"></div>
-              </div>
-              <p class="text-xs text-gray-400 mt-1">MySQL, Data Modeling, CRUD Operations</p>
-            </div>
+        <!-- Skills -->
+        <h3 class="text-2xl font-bold mt-10 mb-4">Skills</h3>
 
-            <!-- Skill 3 -->
-            <div class="skill-item">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-semibold text-gray-200">Responsive Design</span>
-                <span class="text-xs text-pink-400 font-bold">92%</span>
-              </div>
-              <div class="skill-progress-bar">
-                <div class="skill-fill" style="--progress: 92%;"></div>
-              </div>
-              <p class="text-xs text-gray-400 mt-1">Bootstrap, Tailwind CSS, Mobile-First</p>
-            </div>
-
-            <!-- Skill 4 -->
-            <div class="skill-item">
-              <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-semibold text-gray-200">Time Management</span>
-                <span class="text-xs text-indigo-400 font-bold">90%</span>
-              </div>
-              <div class="skill-progress-bar">
-                <div class="skill-fill" style="--progress: 90%;"></div>
-              </div>
-              <p class="text-xs text-gray-400 mt-1">Project Organization, Deadline Management</p>
-            </div>
-          </div>
+        <div class="border-l-2 border-primary pl-4">
+          <ul class="text-gray-300 space-y-2">
+            <li>• HTML, CSS,PHP,Laravel,Filament and JavaScript</li>
+            <li>• Responsive Web Design</li>
+            <li>• Time Management</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1460,20 +979,14 @@
 
 <!-- Projects Section -->
 <section id="projects" class="py-20 relative overflow-hidden">
-  <!-- Decorative background elements -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute top-1/3 left-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
-    <div class="absolute bottom-1/3 right-0 w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-6 relative z-10">
+  <div class="max-w-7xl mx-auto px-6">
     <!-- Header -->
     <div class="text-center mb-16 fade-in-up">
-      <h2 class="text-5xl font-extrabold text-gradient mb-6" style="font-family: 'Orbitron', monospace;">
+      <h2 class="text-4xl font-bold text-gradient mb-6" style="font-family: 'Orbitron', monospace;">
         PROJECTS
       </h2>
-    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-      Showcasing cutting-edge solutions that combine creativity, technical expertise, and innovative design to solve real-world problems.
+    <p class="text-xl text-gray-300">
+      Showcasing initiatives that combine expertise, creativity, and technology to solve real problems effectively.
     </p>
     </div>
 
@@ -1616,7 +1129,7 @@
               <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
               <div class="relative z-10 flex flex-col flex-1">
                 <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                  <i class="ri-book-3-line text-4xl text-purple-400"></i>
+                  <i class="ri-task-line text-4xl text-purple-400"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-white">MLGCL Library</h3>
                 <p class="text-white text-sm flex-1">
@@ -1656,7 +1169,7 @@
               <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
               <div class="relative z-10 flex flex-col flex-1">
                 <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                  <i class="ri-ship-2-line text-4xl text-orange-400"></i>
+                  <i class="ri-task-line text-4xl text-purple-400"></i>
                 </div>
                 <h3 class="text-xl font-bold mb-2 text-white">LEOPARDS MOTORBOAT SERVICES</h3>
                 <div class="flex flex-wrap gap-2 mt-4">
@@ -1803,11 +1316,11 @@
 
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-6 relative z-10">
+        <section id="contact" class="py-20">
+        <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16 fade-in-up">
             <h2
-                class="text-5xl font-extrabold text-gradient mb-6"
+                class="text-4xl font-bold text-gradient mb-6"
                 style="font-family: 'Orbitron', monospace;"
             >
                 CONTACT ME
