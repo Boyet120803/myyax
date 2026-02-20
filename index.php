@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Boyet Dedal Portfolio</title>
         <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+        <link rel="icon" type="image/png" href="assets/img/faceloaderhappy.png">
         <script>
         tailwind.config = {
             theme: {
@@ -212,6 +213,19 @@
                 80% { transform: translate(2px, -2px); }
             }
 
+            /* Typing Animation */
+            .typing-text {
+                display: inline-block;
+                border-right: 3px solid #57B5E7;
+                animation: blink-caret 0.75s step-end infinite;
+                white-space: nowrap;
+            }
+
+            @keyframes blink-caret {
+                from, to { border-right-color: #57B5E7; }
+                50% { border-right-color: transparent; }
+            }
+
             .smooth-scroll {
                 scroll-behavior: smooth;
             }
@@ -386,14 +400,42 @@
 
             .cursor-trail {
                 position: fixed;
-                width: 4px;
-                height: 4px;
-                background: #57B5E7;
+                width: 12px;
+                height: 12px;
+                background: radial-gradient(circle at 30% 30%, rgba(87, 181, 231, 0.8), rgba(139, 69, 193, 0.4), transparent);
                 border-radius: 50%;
                 pointer-events: none;
                 z-index: 9999;
                 opacity: 0;
-                transition: opacity 0.3s ease;
+                box-shadow: 
+                  0 0 20px rgba(87, 181, 231, 0.6),
+                  0 0 40px rgba(87, 181, 231, 0.3),
+                  inset -1px -1px 3px rgba(255, 255, 255, 0.1);
+                filter: blur(0.5px);
+                will-change: transform, opacity;
+            }
+
+            .cursor-trail::before {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 1px solid rgba(87, 181, 231, 0.4);
+                border-radius: 50%;
+                animation: pulse-ring 0.6s ease-out forwards;
+            }
+
+            @keyframes pulse-ring {
+                0% {
+                    transform: scale(0);
+                    opacity: 1;
+                    border-color: rgba(87, 181, 231, 0.8);
+                }
+                100% {
+                    transform: scale(2.5);
+                    opacity: 0;
+                    border-color: rgba(87, 181, 231, 0);
+                }
             }
 
             .scroll-top {
@@ -1119,10 +1161,10 @@
               WEB DEVELOPER
             </div>
             <h1
-              class="text-5xl lg:text-7xl font-black text-gradient leading-tight"
+              class="text-5xl lg:text-7xl font-black text-gradient leading-tight inline-block"
               style="font-family: 'Orbitron', monospace;"
             >
-              B. DEDAL
+              <span id="typing-text" class="typing-text" data-type="B. DEDAL">B. DEDAL</span>
             </h1>
             <p class="text-xl text-gray-300 leading-relaxed max-w-lg mx-auto lg:mx-0">
               I'm a Junior Developer from Hindang, Leyte, passionate about building creative and functional digital solutions.
@@ -1985,32 +2027,93 @@
 
         <script id="cursor-trail">
         document.addEventListener("DOMContentLoaded", function () {
-            const trail = document.querySelector(".cursor-trail");
-            let mouseX = 0,
-            mouseY = 0;
-            let trailX = 0,
-            trailY = 0;
+            const trailParticles = [];
+            let mouseX = 0;
+            let mouseY = 0;
+            const particleCount = 8;
+            const trailLength = 40; // Distance between particles
+            
+            // Create trail particles
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'cursor-trail';
+                document.body.appendChild(particle);
+                trailParticles.push({
+                    element: particle,
+                    x: mouseX,
+                    y: mouseY,
+                    targetX: mouseX,
+                    targetY: mouseY,
+                    life: 0,
+                    opacity: 0
+                });
+            }
 
             document.addEventListener("mousemove", (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            trail.style.opacity = "1";
+                mouseX = e.clientX;
+                mouseY = e.clientY;
             });
 
-            function animateTrail() {
-            trailX += (mouseX - trailX) * 0.1;
-            trailY += (mouseY - trailY) * 0.1;
+            function updateTrail() {
+                // Update each trail particle with delay
+                for (let i = 0; i < trailParticles.length; i++) {
+                    const particle = trailParticles[i];
+                    const prevParticle = i > 0 ? trailParticles[i - 1] : { x: mouseX, y: mouseY };
+                    
+                    // Smooth follow with lag
+                    particle.targetX = prevParticle.x;
+                    particle.targetY = prevParticle.y;
+                    
+                    // Easing for smooth movement
+                    particle.x += (particle.targetX - particle.x) * 0.25;
+                    particle.y += (particle.targetY - particle.y) * 0.25;
+                    
+                    // Fade out effect
+                    particle.life = 1 - (i / trailParticles.length);
+                    particle.opacity = particle.life * 0.8;
+                    
+                    particle.element.style.left = (particle.x - 6) + "px";
+                    particle.element.style.top = (particle.y - 6) + "px";
+                    particle.element.style.opacity = particle.opacity;
+                    
+                    // Scale effect
+                    const scale = 0.4 + (particle.life * 0.6);
+                    particle.element.style.transform = `scale(${scale})`;
+                }
 
-            trail.style.left = trailX + "px";
-            trail.style.top = trailY + "px";
-
-            requestAnimationFrame(animateTrail);
+                requestAnimationFrame(updateTrail);
             }
-            animateTrail();
+            updateTrail();
+        });
+        </script>
 
-            document.addEventListener("mouseleave", () => {
-            trail.style.opacity = "0";
-            });
+        <script id="typing-animation">
+        document.addEventListener("DOMContentLoaded", function () {
+            const typingSpan = document.querySelector('#typing-text');
+            if (!typingSpan) return;
+            
+            const text = typingSpan.getAttribute('data-type');
+            typingSpan.textContent = ''; // Clear existing text
+            let index = 0;
+            
+            function typeCharacter() {
+                if (index < text.length) {
+                    typingSpan.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typeCharacter, 150); // Adjust speed (150ms per character)
+                } else {
+                    // Restart animation after a delay
+                    setTimeout(() => {
+                        typingSpan.textContent = '';
+                        index = 0;
+                        typeCharacter();
+                    }, 2000); // Wait 2 seconds before restarting
+                }
+            }
+            
+            typingSpan.classList.add('typing-text'); // Add typing class for cursor
+            // Start typing animation after a small delay
+            setTimeout(typeCharacter, 300);
         });
         </script>
 
