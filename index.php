@@ -1175,18 +1175,18 @@
               href="#projects"
               class="!rounded-button whitespace-nowrap px-8 py-4 glass-morphism neon-glow magnetic-hover text-white font-semibold mx-auto lg:mx-0"
               >
-              Explore Portfolio
+              Explore Projects
               </a>
             </div>
           </div>
             <div class="relative flex justify-center w-full pb-16 lg:pb-0">
-              <div class="w-[22rem] h-[30rem] sm:w-[26rem] sm:h-[34rem] lg:w-[29rem] lg:h-[29rem] mx-auto relative -mt-4 sm:-mt-2 lg:-mt-5 -mb-16 lg:mb-0">
+                <div class="w-[22rem] h-[30rem] sm:w-[26rem] sm:h-[34rem] lg:w-[29rem] lg:h-[29rem] mx-auto relative -mt-16 sm:mt-2 lg:mt-5 -mb-16 lg:mb-0">
                       <!-- Digital Avatar -->
                       <div class="absolute inset-0 flex items-center justify-center">                     
                           <div class="w-full h-full overflow-hidden flex items-center justify-center">
                               <img id="avatar-img" src="assets/img/boyetyet.png" alt="User" class="w-full h-full object-contain" />
                           </div>
-                       </div>
+                      </div>
                   </div>
               </div>
             </div>
@@ -1261,14 +1261,14 @@
                 </div>
                 <div class="flex flex-wrap items-center gap-8">
                   <div class="flex items-center gap-4">
-                    <span class="text-4xl font-extrabold text-white stats-number">2+</span>
+                    <span class="text-4xl font-extrabold text-white stats-number">3+</span>
                     <div class="leading-tight text-gray-200">
                       <div class="text-sm uppercase tracking-widest">Years of</div>
                       <div class="text-base font-semibold">Experience</div>
                     </div>
                   </div>
                   <div class="flex items-center gap-4">
-                    <span class="text-4xl font-extrabold text-white stats-number">4+</span>
+                    <span class="text-4xl font-extrabold text-white stats-number">5+</span>
                     <div class="leading-tight text-gray-200">
                       <div class="text-sm uppercase tracking-widest">Projects</div>
                       <div class="text-base font-semibold">Completed</div>
@@ -1721,6 +1721,8 @@
             </div>
           </div>
         </div>
+
+        
 
       <!-- Project Card 6 -->
       <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
