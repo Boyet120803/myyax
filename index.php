@@ -44,6 +44,10 @@
         <style>
             :where([class^="ri-"])::before { content: "\f3c2"; }
 
+            :root {
+              --section-bg: #0b1220;
+            }
+
             * {
                 margin: 0;
                 padding: 0;
@@ -56,16 +60,24 @@
             }
 
             body {
-                font-family: 'Exo 2', sans-serif;
-              background: #311E4C;
-                color: #ffffff;
-                overflow-x: hidden;
+              font-family: 'Exo 2', sans-serif;
+              background: var(--section-bg);
+              color: #ffffff;
+              overflow-x: hidden;
               transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+            section {
+              background-color: var(--section-bg);
             }
 
             body.theme-light {
               background: #E1EBED;
               color: #0f172a;
+            }
+
+            body.theme-light section {
+              background-color: #E1EBED;
             }
 
             body.theme-light .hero-bg {
@@ -105,6 +117,28 @@
               color: #0ea5e9;
             }
 
+            body.theme-light .about-card h3 {
+              background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            }
+
+            body.theme-light .about-card p {
+              color: #334155;
+            }
+
+            body.theme-light .about-card:hover h3 {
+              background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            }
+
+            body.theme-light .about-card:hover p {
+              color: #0f172a;
+            }
+
             .theme-toggle {
               color: #ffffff;
               border: 1px solid rgba(255, 255, 255, 0.2);
@@ -129,10 +163,10 @@
             }
 
             .hero-bg {
-                background: radial-gradient(circle at 30% 40%, rgba(87, 181, 231, 0.15) 0%, transparent 50%),
-                            radial-gradient(circle at 80% 20%, rgba(139, 69, 193, 0.15) 0%, transparent 50%),
-                            radial-gradient(circle at 40% 80%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
-                            linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+              background: radial-gradient(circle at 30% 40%, rgba(87, 181, 231, 0.15) 0%, transparent 50%),
+                          radial-gradient(circle at 80% 20%, rgba(139, 69, 193, 0.15) 0%, transparent 50%),
+                          radial-gradient(circle at 40% 80%, rgba(20, 184, 166, 0.1) 0%, transparent 50%),
+                          linear-gradient(135deg, var(--section-bg) 0%, #0f1a2a 50%, #0b1220 100%);
             }
 
             .particle {
@@ -468,6 +502,343 @@
               background: rgba(255, 255, 255, 0.9);
               border-color: rgba(15, 23, 42, 0.15);
               color: #0f172a;
+            }
+
+            .tech-iso-card {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0.75rem;
+              border-radius: 16px;
+              backdrop-filter: blur(14px);
+              box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.12),
+                inset 0 0 4px rgba(255, 255, 255, 0.18),
+                0 8px 16px rgba(0, 0, 0, 0.2);
+              background: rgba(255, 255, 255, 0.02);
+              transition: background 0.4s ease;
+            }
+
+            .tech-iso-card:hover {
+              background: rgba(255, 255, 255, 0.06);
+            }
+
+            .tech-iso-list {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 0.75rem;
+              list-style: none;
+              padding: 0.25rem;
+              margin: 0;
+              flex-wrap: wrap;
+            }
+
+            .tech-iso-item {
+              position: relative;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .tech-iso-button {
+              border: none;
+              background: transparent;
+              padding: 0;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+            }
+
+            .tech-iso-icon {
+              height: 44px;
+              width: 44px;
+              padding: 0.6rem;
+              border-radius: 9999px;
+              background: rgba(255, 255, 255, 0.08);
+              box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.18),
+                inset 0 0 4px rgba(255, 255, 255, 0.25),
+                0 6px 10px rgba(0, 0, 0, 0.18);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .tech-iso-text {
+              position: absolute;
+              top: -36px;
+              left: 50%;
+              transform: translateX(-50%) translateY(4px) skew(-4deg);
+              opacity: 0;
+              padding: 4px 8px;
+              border-radius: 6px;
+              font-size: 0.75rem;
+              font-weight: 600;
+              letter-spacing: 0.5px;
+              color: #0f172a;
+              background: rgba(255, 255, 255, 0.85);
+              box-shadow: -4px 0 1px rgba(153, 153, 153, 0.2),
+                -8px 0 1px rgba(153, 153, 153, 0.2),
+                inset 0 0 18px rgba(255, 255, 255, 0.3),
+                inset 0 0 4px rgba(255, 255, 255, 0.5),
+                0 5px 5px rgba(0, 0, 0, 0.08);
+              transition: all 0.3s ease;
+              pointer-events: none;
+              white-space: nowrap;
+              z-index: 5;
+            }
+
+            .tech-iso-item span.tech-iso-ring {
+              opacity: 0;
+              position: absolute;
+              border-radius: 50%;
+              height: 44px;
+              width: 44px;
+              border: 1px solid rgba(88, 181, 231, 0.6);
+              box-shadow: inset 0 0 14px rgba(255, 255, 255, 0.25),
+                inset 0 0 4px rgba(255, 255, 255, 0.4),
+                0 6px 12px rgba(0, 0, 0, 0.16);
+              transition: all 0.3s ease;
+            }
+
+            .tech-iso-item:hover .tech-iso-icon {
+              transform: translate(6px, -6px);
+            }
+
+            .tech-iso-item:hover .tech-iso-text {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0) skew(-4deg);
+            }
+
+            .tech-iso-item:hover span.tech-iso-ring:nth-child(1) {
+              opacity: 0.2;
+            }
+
+            .tech-iso-item:hover span.tech-iso-ring:nth-child(2) {
+              opacity: 0.4;
+              transform: translate(4px, -4px);
+            }
+
+            .tech-iso-item:hover span.tech-iso-ring:nth-child(3) {
+              opacity: 0.6;
+              transform: translate(8px, -8px);
+            }
+
+            .project-carousel {
+              width: 100%;
+              min-height: 360px;
+              position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+              margin-top: 1rem;
+              touch-action: pan-y;
+            }
+
+            .project-orbit {
+              --w: 140px;
+              --h: 190px;
+              --translateZ: calc((var(--w) + var(--h)) + 20px);
+              --rotateX: -12deg;
+              --perspective: 1200px;
+              --manual-rotateY: 0deg;
+              position: relative;
+              width: var(--w);
+              height: var(--h);
+              transform-style: preserve-3d;
+              transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(var(--manual-rotateY));
+            }
+
+            @keyframes project-rotating {
+              from {
+                transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
+              }
+              to {
+                transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn);
+              }
+            }
+
+            .project-orbit-card {
+              position: absolute;
+              inset: 0;
+              border-radius: 16px;
+              overflow: hidden;
+              border: 2px solid rgba(var(--color-card), 0.9);
+              transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+                translateZ(var(--translateZ));
+              box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+            }
+
+            .project-orbit-link {
+              position: relative;
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+
+            .project-orbit-img {
+              width: 100%;
+              height: 100%;
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-color: #0b1220;
+              position: relative;
+            }
+
+            .project-orbit-img::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background: radial-gradient(
+                circle,
+                rgba(var(--color-card), 0.25) 0%,
+                rgba(var(--color-card), 0.6) 70%,
+                rgba(var(--color-card), 0.9) 100%
+              );
+              mix-blend-mode: screen;
+              opacity: 0.6;
+            }
+
+            .project-orbit-img::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background: linear-gradient(180deg, rgba(10, 12, 22, 0.35), rgba(10, 12, 22, 0.8));
+            }
+
+            .project-orbit-label {
+              position: absolute;
+              left: 12px;
+              right: 12px;
+              bottom: 12px;
+              padding: 8px 10px;
+              border-radius: 10px;
+              font-size: 0.85rem;
+              font-weight: 700;
+              color: #e2e8f0;
+              background: rgba(15, 23, 42, 0.7);
+              backdrop-filter: blur(6px);
+              text-align: center;
+              z-index: 2;
+            }
+
+            .project-modal {
+              position: fixed;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 1.25rem;
+              opacity: 0;
+              pointer-events: none;
+              z-index: 80;
+              transition: opacity 0.28s ease;
+            }
+
+            .project-modal.is-open {
+              opacity: 1;
+              pointer-events: auto;
+            }
+
+            .project-modal-backdrop {
+              position: absolute;
+              inset: 0;
+              background: rgba(5, 8, 18, 0.72);
+              backdrop-filter: blur(6px);
+              opacity: 0;
+              transition: opacity 0.28s ease;
+            }
+
+            .project-modal.is-open .project-modal-backdrop {
+              opacity: 1;
+            }
+
+            .project-modal-panel {
+              position: relative;
+              width: min(560px, 100%);
+              border-radius: 20px;
+              padding: 1.6rem;
+              border: 1px solid rgba(148, 163, 184, 0.35);
+              background: linear-gradient(165deg, rgba(15, 23, 42, 0.94), rgba(30, 41, 59, 0.9));
+              box-shadow: 0 22px 55px rgba(2, 6, 23, 0.55);
+              transform: translateY(20px) scale(0.96);
+              opacity: 0;
+              transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+            }
+
+            .project-modal.is-open .project-modal-panel {
+              transform: translateY(0) scale(1);
+              opacity: 1;
+            }
+
+            .project-modal-close {
+              position: absolute;
+              top: 0.8rem;
+              right: 0.8rem;
+              width: 38px;
+              height: 38px;
+              border-radius: 9999px;
+              border: 1px solid rgba(148, 163, 184, 0.45);
+              background: rgba(15, 23, 42, 0.72);
+              color: #e2e8f0;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              transition: transform 0.2s ease, background-color 0.2s ease;
+            }
+
+            .project-modal-close:hover {
+              transform: rotate(90deg);
+              background: rgba(30, 41, 59, 0.92);
+            }
+
+            .project-modal-title {
+              font-size: 1.5rem;
+              font-weight: 800;
+              color: #f8fafc;
+              margin-bottom: 0.7rem;
+              font-family: 'Orbitron', monospace;
+              padding-right: 2.4rem;
+            }
+
+            .project-modal-description {
+              color: #cbd5e1;
+              line-height: 1.65;
+              margin-bottom: 1.2rem;
+              font-size: 0.97rem;
+            }
+
+            .project-modal-view {
+              display: inline-flex;
+              align-items: center;
+              gap: 0.45rem;
+              border-radius: 9999px;
+              border: 1px solid rgba(87, 181, 231, 0.8);
+              color: #e0f2fe;
+              background: linear-gradient(135deg, rgba(14, 116, 144, 0.7), rgba(59, 130, 246, 0.55));
+              font-weight: 700;
+              padding: 0.65rem 1rem;
+              transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .project-modal-view:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 10px 26px rgba(14, 116, 144, 0.35);
+            }
+
+            @media (max-width: 768px) {
+              .project-orbit {
+                --w: 120px;
+                --h: 160px;
+                --translateZ: calc((var(--w) + var(--h)) + 10px);
+                animation-duration: 28s;
+              }
+
+              .project-carousel {
+                min-height: 320px;
+              }
             }
 
             @media (max-width: 768px) {
@@ -1515,256 +1886,64 @@
     </p>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-      <!-- Project Card 1 -->
-      <div class="project-card perspective h-80 fade-in-up">
-        <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
-          
-          <!-- Front -->
-          <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-white/10 pointer-events-none" 
-              style="background-image: url('assets/img/hnvs-id.png');">
-            
-            <!-- Overlay -->
-            <div class="absolute inset-0 bg-black/75 rounded-2xl pointer-events-none"></div>
-            
-            <!-- Content -->
-            <div class="relative z-10 flex flex-col flex-1">
-              <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                <i class="ri-id-card-line text-4xl text-primary"></i>
-              </div>
-              <h3 class="text-xl font-bold mb-2 text-white">HNVS ID Maker</h3>
-              <p class="text-white text-sm flex-1">
-                A user-friendly system for creating student and staff IDs efficiently with image upload, QR code integration, and PDF export.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-3 py-1 text-xs bg-primary/20 text-primary rounded-full">ID System</span>
-                <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">QR Code</span>
-                <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">PDF Export</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Back -->
-          <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg rounded-2xl flex flex-col justify-center pointer-events-auto">
-            <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-            <ul class="text-sm text-gray-300 space-y-2">
-              <li>• Image upload for student/staff photos</li>
-              <li>• Automatic QR code generation</li>
-              <li>• Export IDs as PDF</li>
-              <li>• Drag-and-drop image upload for easy ID creation</li>
-            </ul>
-            <a href="https://hnvs-id.creativedevlabs.com" target="_blank" 
-              class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
-              View Project
-            </a>
-          </div>
-
+    <!-- Projects Carousel -->
+    <div class="project-carousel">
+      <div class="project-orbit" style="--quantity: 6;">
+        <div class="project-orbit-card" style="--index: 0; --color-card: 87, 181, 231;">
+          <a href="https://hnvs-id.creativedevlabs.com" target="_blank" rel="noopener" class="project-orbit-link" data-project-title="HNVS ID Maker" data-project-description="A web-based ID generation platform that streamlines student identification workflows with a clean layout, export-ready outputs, and centralized profile handling.">
+            <div class="project-orbit-img" style="background-image: url('assets/img/hnvs-id.png');"></div>
+            <span class="project-orbit-label">HNVS ID Maker</span>
+          </a>
         </div>
-      </div>
-
-      <!-- Project Card 2 -->
-      <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.2s;">
-        <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
-
-          <!-- Front -->
-          <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-white/10 pointer-events-none" 
-              style="background-image: url('assets/img/idmakermlgcl.png');">
-            <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col flex-1">
-              <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                <i class="ri-id-card-line text-4xl text-secondary"></i>
-              </div>
-              <h3 class="text-xl font-bold mb-2 text-white">MLGCL ID Maker</h3>
-              <p class="text-white text-sm flex-1">
-                A comprehensive ID creation system for MLG, featuring user-friendly interface, image upload, and PDF export.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-3 py-1 text-xs bg-secondary/20 text-secondary rounded-full">ID System</span>
-                <span class="px-3 py-1 text-xs bg-cyan-500/20 text-cyan-400 rounded-full">PDF Export</span>
-                <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">Image Upload</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Back -->
-          <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
-            <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-            <ul class="text-sm text-gray-300 space-y-2">
-              <li>• Drag-and-drop image upload for ID creation</li>
-              <li>• Export IDs as PDF</li>
-              <li>• User-friendly interface</li>
-              <li>• Secure access and management</li>
-            </ul>
-            <a href="https://idmaker.creativedevlabs.com" target="_blank" 
-              class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
-              View Project
-            </a>
-          </div>
-
+        <div class="project-orbit-card" style="--index: 1; --color-card: 141, 211, 199;">
+          <a href="https://idmaker.creativedevlabs.com" target="_blank" rel="noopener" class="project-orbit-link" data-project-title="MLGCL ID Maker" data-project-description="An automated ID builder tailored for school operations, helping staff generate consistent and professional IDs faster through guided data entry and visual templates.">
+            <div class="project-orbit-img" style="background-image: url('assets/img/idmakermlgcl.png');"></div>
+            <span class="project-orbit-label">MLGCL ID Maker</span>
+          </a>
         </div>
-      </div>
-
-          <!-- Project Card 3 -->
-      <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
-        <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
-          <!-- Front -->
-          <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-black/10 pointer-events-none"
-              style="background-image: url('assets/img/taskmanagement.png');">
-            <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col flex-1">
-              <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                <i class="ri-task-line text-4xl text-purple-400"></i>
-              </div>
-              <h3 class="text-xl font-bold mb-2 text-white">Task Management System</h3>
-              <p class="text-white text-sm flex-1">
-                A comprehensive system to manage tasks efficiently with roles, assignments, notifications, and progress tracking.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">Tasks</span>
-                <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">CRUD</span>
-                <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Notifications</span>
-              </div>
-            </div>
-          </div>
-          <!-- Back -->
-          <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
-            <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-            <ul class="text-sm text-gray-300 space-y-2">
-              <li>• Role-based task assignment</li>
-              <li>• Task CRUD functionality</li>
-              <li>• Real-time notifications</li>
-              <li>• Progress tracking for teams</li>
-            </ul>
-            <a href="https://bdedal.online/" target="_blank" 
-              class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
-              View Project
-            </a>
-          </div>
+        <div class="project-orbit-card" style="--index: 2; --color-card: 139, 69, 193;">
+          <a href="https://bdedal.online/" target="_blank" rel="noopener" class="project-orbit-link" data-project-title="Task Management System" data-project-description="A productivity-focused management tool for planning, tracking, and organizing tasks with status monitoring, clear priorities, and team-friendly workflow visibility.">
+            <div class="project-orbit-img" style="background-image: url('assets/img/taskmanagement.png');"></div>
+            <span class="project-orbit-label">Task Management System</span>
+          </a>
         </div>
-      </div>
-
-              <!-- Project Card 4 -->
-        <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
-          <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
-            <!-- Front -->
-            <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-black/10 pointer-events-none"
-                style="background-image: url('assets/img/library.png');">
-              <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
-              <div class="relative z-10 flex flex-col flex-1">
-                <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                  <i class="ri-book-3-line text-4xl text-purple-400"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2 text-white">MLGCL Library</h3>
-                <p class="text-white text-sm flex-1">
-                    A web-based library management system for managing books, borrowers, and borrowing transactions, with user roles and activity tracking.
-                </p>
-                <div class="flex flex-wrap gap-2 mt-4">
-                  <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">Library</span>
-                  <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">Books</span>
-                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Borrowing</span>
-                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Reservations</span>
-                </div>
-              </div>
-            </div>
-            <!-- Back -->
-            <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
-              <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-              <ul class="text-sm text-gray-300 space-y-2">
-                <li>• Role-based access (Admin, Librarian, Student)</li>
-                <li>• Book management (CRUD)</li>
-                <li>• Borrowing and returning transactions</li>
-                <li>• Borrowing history and activity logs</li>
-              </ul>
-              <a href="https://library.creativedevlabs.com/admin" target="_blank" 
-                class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
-                View Project
-              </a>
-            </div>
-          </div>
+        <div class="project-orbit-card" style="--index: 3; --color-card: 236, 72, 153;">
+          <a href="https://library.creativedevlabs.com/admin" target="_blank" rel="noopener" class="project-orbit-link" data-project-title="MLGCL Library" data-project-description="A digital library admin system for managing book records, circulation actions, and catalog operations to improve access, monitoring, and resource control.">
+            <div class="project-orbit-img" style="background-image: url('assets/img/library.png');"></div>
+            <span class="project-orbit-label">MLGCL Library</span>
+          </a>
         </div>
-
-              <!-- Project Card 5 -->
-        <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
-          <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
-            <!-- Front -->
-            <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg border border-black/10 pointer-events-none"
-                style="background-image: url('assets/img/leopards.png');">
-              <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
-              <div class="relative z-10 flex flex-col flex-1">
-                <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                  <i class="ri-ship-2-line text-4xl text-orange-400"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2 text-white">LEOPARDS MOTORBOAT SERVICES</h3>
-                <div class="flex flex-wrap gap-2 mt-4">
-                  <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">Motorboat</span>
-                  <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">Bookings</span>
-                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Customers</span>
-                  <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Reservations</span>
-                </div>
-              </div>
-            </div>
-            <!-- Back -->
-            <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
-              <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-              <ul class="text-sm text-gray-300 space-y-2">
-                  <li>• Role-based access (Admin, Staff, Customer)</li>
-                  <li>• Motorboat booking management (CRUD)</li>
-                  <li>• Customer and reservation records</li>
-                  <li>• Service schedules and trip management</li>
-              </ul>
-              <a href="https://lmbs-staging.creativedevlabs.com/" target="_blank" 
-                class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
-                View Project
-              </a>
-            </div>
-          </div>
+        <div class="project-orbit-card" style="--index: 4; --color-card: 252, 142, 142;">
+          <a href="https://lmbs-staging.creativedevlabs.com/" target="_blank" rel="noopener" class="project-orbit-link" data-project-title="Leopards Motorboat" data-project-description="A service-oriented website experience for motorboat operations, designed to present offerings clearly and support user inquiries through an organized interface.">
+            <div class="project-orbit-img" style="background-image: url('assets/img/leopards.png');"></div>
+            <span class="project-orbit-label">Leopards Motorboat</span>
+          </a>
         </div>
-
-        
-
-      <!-- Project Card 6 -->
-      <div class="project-card perspective h-80 fade-in-up" style="animation-delay: 0.4s;">
-        <div class="project-inner relative w-full h-full duration-700 transform-style-preserve-3d transition-transform">
-          <!-- Front -->
-          <div class="project-front relative w-full h-full backface-hidden p-6 rounded-2xl flex flex-col bg-cover bg-center shadow-lg overflow-hidden border border-black/10 pointer-events-none"
-              style="background-image: url('assets/img/stdprofile.png');">
-            <div class="absolute inset-0 bg-black/80 rounded-2xl pointer-events-none"></div>
-            <div class="relative z-10 flex flex-col flex-1">
-              <div class="w-full h-32 flex items-center justify-center mb-4 animate-bounce">
-                <i class="ri-profile-line text-4xl text-purple-400"></i>
-              </div>
-              <h3 class="text-xl font-bold mb-2 text-white">Student Profile Registration System</h3>
-              <p class="text-white text-sm flex-1">
-                A system to manage student records with full CRUD functionality, image uploads, search, and responsive design.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-3 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-full">CRUD</span>
-                <span class="px-3 py-1 text-xs bg-pink-500/20 text-pink-400 rounded-full">Image Upload</span>
-                <span class="px-3 py-1 text-xs bg-indigo-500/20 text-indigo-400 rounded-full">Responsive</span>
-              </div>
-            </div>
-          </div>
-          <!-- Back -->
-          <div class="project-back absolute w-full h-full backface-hidden rotate-y-180 p-6 bg-white/5 backdrop-blur-md shadow-lg border border-white/10 rounded-2xl flex flex-col justify-center pointer-events-auto">
-            <h3 class="text-xl font-bold mb-4">Technical Details</h3>
-            <ul class="text-sm text-gray-300 space-y-2">
-              <li>• Add, edit, delete student records</li>
-              <li>• Upload student profile pictures</li>
-              <li>• Search and filter students</li>
-              <li>• Mobile-friendly responsive layout</li>
-            </ul>
-            <a href="https://stdprofile.webactivities.online/login.form.php?/" target="_blank" 
-              class="!rounded-button whitespace-nowrap mt-4 px-6 py-2 bg-primary text-black font-semibold text-center">
-              View Project
-            </a>
-          </div>
+        <div class="project-orbit-card" style="--index: 5; --color-card: 99, 102, 241;">
+          <a href="https://stdprofile.webactivities.online/login.form.php?/" target="_blank" rel="noopener" class="project-orbit-link" data-project-title="Student Profile System" data-project-description="A student profile management platform for storing, updating, and viewing key learner information with structured records and quick profile retrieval.">
+            <div class="project-orbit-img" style="background-image: url('assets/img/stdprofile.png');"></div>
+            <span class="project-orbit-label">Student Profile System</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div id="project-modal" class="project-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+  <div class="project-modal-backdrop" data-close-modal="true"></div>
+  <div class="project-modal-panel">
+    <button type="button" class="project-modal-close" data-close-modal="true" aria-label="Close project modal">
+      <i class="ri-close-line"></i>
+    </button>
+    <h3 id="project-modal-title" class="project-modal-title"></h3>
+    <p id="project-modal-description" class="project-modal-description"></p>
+    <a id="project-modal-view" class="project-modal-view" href="#" data-dynamic-link="true" target="_blank" rel="noopener">
+      View Project
+      <i class="ri-arrow-right-up-line"></i>
+    </a>
+  </div>
+</div>
 
      <!-- Experience Timeline -->
 <section id="experience" class="py-20">
@@ -2121,7 +2300,7 @@
 
         <script id="smooth-navigation">
         document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          document.querySelectorAll('a[href^="#"]:not([data-dynamic-link="true"])').forEach((anchor) => {
             anchor.addEventListener("click", function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute("href"));
@@ -2239,6 +2418,123 @@ document.querySelectorAll('.project-card').forEach(card => {
     if (e.target.closest('button') || e.target.closest('a')) return;
 
     inner.classList.toggle('rotate-y-180');
+  });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const projectsSection = document.getElementById('projects');
+  const carousel = projectsSection ? projectsSection.querySelector('.project-carousel') : null;
+  const orbit = carousel ? carousel.querySelector('.project-orbit') : null;
+  if (!projectsSection || !carousel || !orbit) return;
+
+  const autoSpeedDegPerSec = -8;
+  const dragSensitivity = 0.35;
+  const dragThreshold = 8;
+
+  let currentRotation = 0;
+  let lastFrameTime = performance.now();
+  let isDragging = false;
+  let startX = 0;
+  let lastX = 0;
+  let totalDrag = 0;
+  let suppressClickUntil = 0;
+
+  const applyRotation = () => {
+    orbit.style.setProperty('--manual-rotateY', currentRotation + 'deg');
+  };
+
+  const tick = (time) => {
+    const deltaSeconds = (time - lastFrameTime) / 1000;
+    lastFrameTime = time;
+    currentRotation += autoSpeedDegPerSec * deltaSeconds;
+    applyRotation();
+    requestAnimationFrame(tick);
+  };
+
+  carousel.addEventListener('pointerdown', function (event) {
+    if (!event.isPrimary) return;
+    isDragging = true;
+    startX = event.clientX;
+    lastX = event.clientX;
+    totalDrag = 0;
+  });
+
+  carousel.addEventListener('pointermove', function (event) {
+    if (!isDragging) return;
+    const delta = event.clientX - lastX;
+    totalDrag += Math.abs(delta);
+    currentRotation += delta * dragSensitivity;
+    applyRotation();
+    lastX = event.clientX;
+  });
+
+  carousel.addEventListener('pointerup', function () {
+    if (!isDragging) return;
+    isDragging = false;
+    if (totalDrag >= dragThreshold || Math.abs(lastX - startX) >= dragThreshold) {
+      suppressClickUntil = Date.now() + 250;
+    }
+  });
+
+  carousel.addEventListener('pointercancel', function () {
+    isDragging = false;
+  });
+
+  carousel.addEventListener('click', function (event) {
+    if (Date.now() < suppressClickUntil) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  });
+
+  applyRotation();
+  requestAnimationFrame(tick);
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('project-modal');
+  if (!modal) return;
+
+  const modalTitle = document.getElementById('project-modal-title');
+  const modalDescription = document.getElementById('project-modal-description');
+  const modalView = document.getElementById('project-modal-view');
+  const body = document.body;
+
+  const openModal = (title, description, url) => {
+    modalTitle.textContent = title || 'Project Details';
+    modalDescription.textContent = description || 'No description available for this project yet.';
+    modalView.href = url || '#';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.project-orbit-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const title = link.getAttribute('data-project-title') || link.querySelector('.project-orbit-label')?.textContent?.trim();
+      const description = link.getAttribute('data-project-description') || '';
+      const url = link.getAttribute('href');
+      openModal(title, description, url);
+    });
+  });
+
+  modal.querySelectorAll('[data-close-modal="true"]').forEach(function (closeEl) {
+    closeEl.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
   });
 });
 </script>
