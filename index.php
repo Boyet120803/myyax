@@ -56,7 +56,7 @@
 
             html {
               width: 100%;
-              overflow-x: hidden; /* Clamp layout to viewport to stop horizontal scroll */
+              overflow-x: hidden; 
             }
 
             body {
@@ -1019,7 +1019,6 @@
                   background: linear-gradient(135deg, rgba(87, 181, 231, 0.4) 0%, rgba(139, 69, 193, 0.2) 50%, transparent 100%);
                 }
 
-                /* Enhanced Project Icon */
                 .project-front i {
                   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   text-shadow: 0 0 20px rgba(87, 181, 231, 0.4);
@@ -1029,8 +1028,6 @@
                   text-shadow: 0 0 40px rgba(87, 181, 231, 0.8);
                   transform: scale(1.15) rotateZ(10deg);
                 }
-
-                /* Enhanced Project Title */
                 .project-front h3 {
                   position: relative;
                   z-index: 10;
@@ -1043,7 +1040,6 @@
                   color: #57B5E7;
                 }
 
-                /* Enhanced Project Tags/Badges */
                 .project-card .px-3.py-1 {
                   position: relative;
                   overflow: hidden;
@@ -1089,7 +1085,6 @@
                   border-color: rgba(141, 211, 199, 0.5) !important;
                 }
 
-                /* Back Side Enhancement */
                 .project-back {
                   background: linear-gradient(135deg, rgba(87, 181, 231, 0.12) 0%, rgba(139, 69, 193, 0.08) 100%);
                   backdrop-filter: blur(20px);
@@ -1153,7 +1148,6 @@
                   box-shadow: 0 15px 40px rgba(87, 181, 231, 0.5);
                 }
 
-                /* Stagger animations for cards */
                 .project-card:nth-child(1) { animation-delay: 0s; }
                 .project-card:nth-child(2) { animation-delay: 0.15s; }
                 .project-card:nth-child(3) { animation-delay: 0.30s; }
@@ -1161,9 +1155,6 @@
                 .project-card:nth-child(5) { animation-delay: 0.60s; }
                 .project-card:nth-child(6) { animation-delay: 0.75s; }
 
-                /* ===== ABOUT SECTION STYLING ===== */
-
-                /* Enhanced About Card Container */
                 .about-card {
                   padding: 32px;
                   border-radius: 20px;
@@ -1199,7 +1190,6 @@
                   background: linear-gradient(135deg, rgba(87, 181, 231, 0.12) 0%, rgba(141, 211, 199, 0.08) 100%);
                 }
 
-                /* Enhanced About Card Icon */
                 .about-card-icon {
                   width: 64px;
                   height: 64px;
@@ -1238,7 +1228,6 @@
                   opacity: 1;
                 }
 
-                /* About Card Icon - Individual Color Variants */
                 .about-card:nth-child(1) .about-card-icon {
                   color: #57B5E7;
                 }
@@ -1251,7 +1240,6 @@
                   color: #913ADC;
                 }
 
-                /* Enhanced About Card Title */
                 .about-card h3 {
                   font-size: 1.375rem;
                   font-weight: 700;
@@ -1271,7 +1259,6 @@
                   background-clip: text;
                 }
 
-                /* Enhanced About Card Paragraph */
                 .about-card p {
                   font-size: 0.95rem;
                   line-height: 1.6;
@@ -1283,7 +1270,6 @@
                   color: #f3f4f6;
                 }
 
-                /* Stagger animations for about cards */
                 #about .grid > div:nth-child(1) {
                   animation-delay: 0s;
                 }
@@ -1297,7 +1283,6 @@
                 }
 
         </style>
-        <!-- Tailwind CSS (for reference) -->
         <style>
           .perspective { perspective: 1000px; }
           .backface-hidden { backface-visibility: hidden; }
@@ -1311,7 +1296,7 @@
               align-items: center;
               height: 100%;
               width: 100%;
-              background-color: black; /* Para consistent sa dati mong loader */
+              background-color: black; 
             }
 
             .loader {
@@ -1405,8 +1390,6 @@
         
     </head>
     <body class="smooth-scroll">
- 
-      <!-- Loading Screen -->
         <div id="loading-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-black">
           <div class="main-container">
             <div class="loader">
@@ -1423,9 +1406,6 @@
             </div>
           </div>
         </div>
-
-
-        <!-- Cursor Trail -->
         <div class="cursor-trail"></div>
             <nav class="site-nav fixed top-0 w-full z-40 glass-morphism">
             <div class="nav-shell max-w-7xl w-full mx-auto px-4 sm:px-6 py-4">
@@ -1446,7 +1426,6 @@
                     BOYET.DEDAL
                 </div>
                 <div class="nav-controls order-3 md:order-2 w-full md:w-auto md:ml-auto flex items-center justify-end space-x-0 sm:space-x-4">
-                  <!-- DESKTOP MENU -->
                   <div class="hidden md:flex space-x-8">
                     <a href="#home" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">HOME</a>
                     <a href="#about" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">ABOUT</a>
@@ -1455,15 +1434,11 @@
                     <a href="#experience" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">EXPERIENCE</a>
                     <a href="#contact" class="nav-item px-4 py-2 text-sm font-medium hover:text-primary transition-colors">CONTACT</a>
                   </div>
-
-                  <!-- HAMBURGER BUTTON -->
                   <button id="menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center z-50 relative">
                     <i class="ri-menu-line text-2xl"></i>
                   </button>
                 </div>
                 </div>
-
-                <!-- MOBILE MENU -->
                 <div
                 id="mobile-menu"
                 class="hidden w-full flex-col mt-4 space-y-4 md:hidden glass-morphism p-4 rounded-lg"
@@ -1477,13 +1452,10 @@
                 </div>
             </div>
             </nav>
-
-        <!-- Hero Section -->
         <section
         id="home"
         class="min-h-screen hero-bg relative overflow-hidden flex items-center pt-28 lg:pt-0"
         >
-        <!-- Animated Particles -->
         <div class="absolute inset-0">
             <div
             class="particle"
@@ -1506,8 +1478,6 @@
             style="top: 15%; left: 70%; animation-delay: 4s;"
             ></div>
         </div>
-
-        <!-- Circuit Lines -->
         <div
             class="circuit-line"
             style="top: 32%; left: 3%; width: 200px; animation-delay: 0.5s;"
@@ -1552,7 +1522,6 @@
           </div>
             <div class="relative flex justify-center w-full pb-16 lg:pb-0">
                 <div class="w-[22rem] h-[30rem] sm:w-[26rem] sm:h-[34rem] lg:w-[29rem] lg:h-[29rem] mx-auto relative -mt-16 sm:mt-2 lg:mt-5 -mb-16 lg:mb-0">
-                      <!-- Digital Avatar -->
                       <div class="absolute inset-0 flex items-center justify-center">                     
                           <div class="w-full h-full overflow-hidden flex items-center justify-center">
                               <img id="avatar-img" src="assets/img/boyetyet.png" alt="User" class="w-full h-full object-contain" />
@@ -1563,8 +1532,6 @@
             </div>
         </div>
         </section>
-
-        <!-- Stats + Tech Strip -->
         <section class="relative z-20 -mt-24">
           <div class="bg-white/10 backdrop-blur-md border-y border-white/10">
             <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -1649,12 +1616,8 @@
             </div>
           </div>
         </section>
-
-        <!-- About Section -->
       <section id="about" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
-
-          <!-- Header -->
           <div class="text-center mb-16 fade-in-up">
             <h2 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 mb-6" style="font-family: 'Orbitron', monospace;">
               ABOUT ME
@@ -1663,8 +1626,6 @@
               Information Technology Student & Aspiring Developer. Hands-on experience in system development with projects like Student Profile Registration System, Voting System, and ID Maker System (MLG & HNVS). Constantly eager to learn and improve skills in software and web development.
             </p>
           </div>
-
-          <!-- Skills / Projects -->
           <div class="grid lg:grid-cols-3 gap-8">
             <div class="about-card">
               <div class="about-card-icon">
@@ -1695,30 +1656,20 @@
             </div>
           </div>
         </div>
-        <!-- Optional floating shapes for modern look -->
         <div class="absolute top-0 left-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
       </section>
-   <section id="resume" class="py-20 relative overflow-hidden">
+  <section id="resume" class="py-20 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6">
-    <!-- Decorative elements -->
     <div class="absolute top-10 right-0 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
     <div class="absolute bottom-0 left-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse-slow"></div>
-
-    <!-- Title -->
     <h2 class="text-5xl font-extrabold text-center mb-4 text-gradient relative z-10"
         style="font-family: 'Orbitron', monospace;">
       MY RESUME
     </h2>
     <p class="text-center text-gray-300 mb-16 text-lg">Complete professional profile & credentials</p>
-
-    <!-- 2 Columns -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-
-      <!-- LEFT COLUMN -->
       <div class="space-y-8">
-
-        <!-- Summary Card -->
         <div class="resume-card animate-fade-in">
           <div class="flex items-start gap-4 mb-4">
             <div class="resume-card-icon text-primary">
@@ -1740,8 +1691,6 @@
             <div class="flex items-center gap-2"><i class="ri-mail-line text-primary"></i> <span class="text-white">dedalboyet16@gmail.com</span></div>
           </div>
         </div>
-
-        <!-- Education Card -->
         <div class="resume-card animate-fade-in" style="animation-delay: 0.1s;">
           <div class="flex items-center gap-3 mb-4">
             <div class="resume-card-icon text-secondary">
@@ -1749,15 +1698,11 @@
             </div>
             <h3 class="text-2xl font-bold text-white">Education</h3>
           </div>
-          
-          <!-- Primary -->
           <div class="mb-4 pl-2 border-l-2 border-secondary/40">
             <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">PRIMARY</p>
             <p class="text-gray-300 font-semibold text-sm">Baldoza Elementary School</p>
             <p class="text-gray-400 text-xs">2006 – 2007 • Hindang, Leyte</p>
           </div>
-
-          <!-- Secondary -->
           <div class="mb-4 pl-2 border-l-2 border-secondary/40">
             <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">SECONDARY</p>
             <p class="text-gray-300 font-semibold text-sm">2017 – 2020</p>
@@ -1766,8 +1711,6 @@
               <li>• Hindang Stand Alone Senior High School (SHS)</li>
             </ul>
           </div>
-
-          <!-- Tertiary -->
           <div class="pl-2 border-l-2 border-secondary/40">
             <p class="text-xs text-secondary font-bold uppercase tracking-wider mb-1">TERTIARY</p>
             <p class="text-gray-300 font-semibold text-sm">Bachelor of Science in Information Technology</p>
@@ -1775,11 +1718,7 @@
           </div>
         </div>
       </div>
-
-      <!-- RIGHT COLUMN -->
       <div class="space-y-8">
-
-        <!-- Work Experience Card -->
         <div class="resume-card animate-fade-in" style="animation-delay: 0.2s;">
           <div class="flex items-center gap-3 mb-4">
             <div class="resume-card-icon text-pink-400">
@@ -1787,7 +1726,6 @@
             </div>
             <h3 class="text-2xl font-bold text-white">Experience</h3>
           </div>
-          
           <div class="pl-2 border-l-2 border-pink-400/40">
             <p class="text-xs text-pink-400 font-bold uppercase tracking-wider mb-1">Web Developer</p>
             <p class="text-gray-300 font-semibold text-sm">Creative Dev Labs Company</p>
@@ -1799,8 +1737,6 @@
             </ul>
           </div>
         </div>
-
-        <!-- Skills Card -->
         <div class="resume-card animate-fade-in" style="animation-delay: 0.3s;">
           <div class="flex items-center gap-3 mb-4">
             <div class="resume-card-icon text-purple-400">
@@ -1810,7 +1746,6 @@
           </div>
 
           <div class="space-y-4">
-            <!-- Skill 1 -->
             <div class="skill-item">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-sm font-semibold text-gray-200">Web Development</span>
@@ -1821,8 +1756,6 @@
               </div>
               <p class="text-xs text-gray-400 mt-1">HTML, CSS, PHP, Laravel, JavaScript</p>
             </div>
-
-            <!-- Skill 2 -->
             <div class="skill-item">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-sm font-semibold text-gray-200">Database Design</span>
@@ -1833,8 +1766,6 @@
               </div>
               <p class="text-xs text-gray-400 mt-1">MySQL, Data Modeling, CRUD Operations</p>
             </div>
-
-            <!-- Skill 3 -->
             <div class="skill-item">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-sm font-semibold text-gray-200">Responsive Design</span>
@@ -1845,8 +1776,6 @@
               </div>
               <p class="text-xs text-gray-400 mt-1">Bootstrap, Tailwind CSS, Mobile-First</p>
             </div>
-
-            <!-- Skill 4 -->
             <div class="skill-item">
               <div class="flex justify-between items-center mb-2">
                 <span class="text-sm font-semibold text-gray-200">Time Management</span>
@@ -1863,20 +1792,12 @@
     </div>
   </div>
 </section>
-
-
-
-
-<!-- Projects Section -->
 <section id="projects" class="py-20 relative overflow-hidden">
-  <!-- Decorative background elements -->
   <div class="absolute inset-0 opacity-10">
     <div class="absolute top-1/3 left-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
     <div class="absolute bottom-1/3 right-0 w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
   </div>
-
   <div class="max-w-7xl mx-auto px-6 relative z-10">
-    <!-- Header -->
     <div class="text-center mb-16 fade-in-up">
       <h2 class="text-5xl font-extrabold text-gradient mb-6" style="font-family: 'Orbitron', monospace;">
         PROJECTS
@@ -1885,8 +1806,6 @@
       Showcasing cutting-edge solutions that combine creativity, technical expertise, and innovative design to solve real-world problems.
     </p>
     </div>
-
-    <!-- Projects Carousel -->
     <div class="project-carousel">
       <div class="project-orbit" style="--quantity: 6;">
         <div class="project-orbit-card" style="--index: 0; --color-card: 87, 181, 231;">
@@ -1929,7 +1848,6 @@
     </div>
   </div>
 </section>
-
 <div id="project-modal" class="project-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
   <div class="project-modal-backdrop" data-close-modal="true"></div>
   <div class="project-modal-panel">
@@ -1944,8 +1862,6 @@
     </a>
   </div>
 </div>
-
-     <!-- Experience Timeline -->
 <section id="experience" class="py-20">
   <div class="max-w-4xl mx-auto px-6">
     <div class="text-center mb-16 fade-in-up">
@@ -1966,31 +1882,26 @@
       ></div>
 
       <div class="space-y-12">
-       <!-- Work Experience -->
-<div class="flex items-center fade-in-up">
-  <div class="w-1/2 pr-8 text-right">
-    <div class="holographic-card p-6">
-      <div class="text-sm text-primary font-semibold mb-2">
-        October 2023 – 2024
+        <div class="flex items-center fade-in-up">
+          <div class="w-1/2 pr-8 text-right">
+            <div class="holographic-card p-6">
+              <div class="text-sm text-primary font-semibold mb-2">
+                October 2023 – 2024
+              </div>
+              <h3 class="text-xl font-bold mb-2">Project-Based Employee</h3>
+              <p class="text-gray-300 mb-3">Creative Dev Labs Company</p>
+              <p class="text-sm text-gray-400">
+                Contributed to upgrading CDL blocks and performing data mining tasks. Assisted in various web development projects, providing technical support and innovative solutions.
+              </p>
+            </div>
+          </div>
+          <div
+          class="w-8 h-8 bg-primary rounded-full flex items-center justify-center relative z-10"
+        >
+          <i class="ri-briefcase-line text-black text-sm"></i>
+        </div>
+        <div class="w-1/2 pl-8"></div>
       </div>
-      <h3 class="text-xl font-bold mb-2">Project-Based Employee</h3>
-      <p class="text-gray-300 mb-3">Creative Dev Labs Company</p>
-      <p class="text-sm text-gray-400">
-        Contributed to upgrading CDL blocks and performing data mining tasks. Assisted in various web development projects, providing technical support and innovative solutions.
-      </p>
-    </div>
-  </div>
-  <div
-    class="w-8 h-8 bg-primary rounded-full flex items-center justify-center relative z-10"
-  >
-    <i class="ri-briefcase-line text-black text-sm"></i>
-  </div>
-  <div class="w-1/2 pl-8"></div>
-</div>
-
-
-        <!-- You can keep older experiences if needed -->
-        <!-- Example placeholder -->
         <div
           class="flex items-center fade-in-up"
           style="animation-delay: 0.2s;"
@@ -2014,15 +1925,11 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </section>
-
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 relative overflow-hidden">
+<section id="contact" class="py-20 relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <div class="text-center mb-16 fade-in-up">
             <h2
@@ -2236,20 +2143,16 @@
             });
 
             function updateTrail() {
-                // Update each trail particle with delay
                 for (let i = 0; i < trailParticles.length; i++) {
                     const particle = trailParticles[i];
                     const prevParticle = i > 0 ? trailParticles[i - 1] : { x: mouseX, y: mouseY };
                     
-                    // Smooth follow with lag
                     particle.targetX = prevParticle.x;
                     particle.targetY = prevParticle.y;
                     
-                    // Easing for smooth movement
                     particle.x += (particle.targetX - particle.x) * 0.25;
                     particle.y += (particle.targetY - particle.y) * 0.25;
                     
-                    // Fade out effect
                     particle.life = 1 - (i / trailParticles.length);
                     particle.opacity = particle.life * 0.8;
                     
@@ -2257,7 +2160,7 @@
                     particle.element.style.top = (particle.y - 6) + "px";
                     particle.element.style.opacity = particle.opacity;
                     
-                    // Scale effect
+                  
                     const scale = 0.4 + (particle.life * 0.6);
                     particle.element.style.transform = `scale(${scale})`;
                 }
@@ -2281,19 +2184,18 @@
                 if (index < text.length) {
                     typingSpan.textContent += text.charAt(index);
                     index++;
-                    setTimeout(typeCharacter, 150); // Adjust speed (150ms per character)
+                    setTimeout(typeCharacter, 150); 
                 } else {
-                    // Restart animation after a delay
                     setTimeout(() => {
                         typingSpan.textContent = '';
                         index = 0;
                         typeCharacter();
-                    }, 2000); // Wait 2 seconds before restarting
+                    }, 2000); 
                 }
             }
             
-            typingSpan.classList.add('typing-text'); // Add typing class for cursor
-            // Start typing animation after a small delay
+            typingSpan.classList.add('typing-text'); 
+         
             setTimeout(typeCharacter, 300);
         });
         </script>
